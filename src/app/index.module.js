@@ -15,9 +15,6 @@
             // Quick Panel
             'app.quick-panel',
 
-            // Sample
-            // 'app.sample',
-
             // Games
             'app.games'
         ]);
