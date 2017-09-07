@@ -6,14 +6,14 @@
         .controller('GamesController', GamesController);
 
     /** @ngInject */
-    function GamesController(SampleData) {
+    function GamesController(NewGames) {
         var vm = this;
 
         // Data
-        vm.helloText = SampleData.data.helloText;
-
+        vm.games = NewGames.games;
+        console.log(vm.games);
         // Methods
 
-        //////////
+
     }
 })();

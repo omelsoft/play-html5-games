@@ -18,7 +18,7 @@
                     }
                 },
                 resolve: {
-                    SampleData: function(msApi) {
+                    NewGames: function(msApi) {
                         return msApi.resolve('games@get');
                     }
                 }
@@ -28,7 +28,7 @@
         $translatePartialLoaderProvider.addPart('app/main/games');
 
         // Api
-        msApiProvider.register('games', ['https://publishers.softgames.com/categories/new_games.json?p=pub-13656-13936']);
+        msApiProvider.register('games', ['app/data/games/games.old.json']);
 
     }
 })();

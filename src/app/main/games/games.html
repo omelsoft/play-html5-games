@@ -1,3 +1,30 @@
-<h1>
-    {{vm.helloText}}
-</h1>
+<div class="masonry" masonry="{ transitionDuration: '0.4s' }" load-images="true">
+    <!-- items -->
+    <div class="masonry-brick" width="300" ng-repeat="game in vm.games track by $index">
+        <md-card>
+            <a ng-href="{{game.link}}" target="_blank">
+                <img width="300" ng-src="{{game.teaserBig}}" class="md-card-image" alt="Washed Out">
+            </a>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{ game.title }}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div class="description short">{{ game.description }}</div>
+            </md-card-content>
+            <md-divider></md-divider>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-icon-button" aria-label="Favorite">
+                    <md-icon class="material-icons favorite"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Settings">
+                    <md-icon class="material-icons open_in_new"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Share">
+                    <md-icon class="material-icons share"></md-icon>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+.masonry {
+    padding: 0px;
+    .masonry-brick {
+        width: 25%;
+    }
+}
+
+.description {
+    &.short {
+        min-height: 70px;
+        max-height: 70px;
+        overflow: hidden;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 1000px) {
+    .masonry {
+        padding: 0px;
+        .masonry-brick {
+            width: 33%;
+        }
+    }
+}
+
+@media all and (max-width: 480px) {
+    .masonry {
+        padding: 0px;
+        .masonry-brick {
+            width: 100%;
+        }
+    }
+}
