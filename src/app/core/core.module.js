@@ -12,6 +12,7 @@
             'ngMaterial',
             'pascalprecht.translate',
             'ui.router',
-            'wu.masonry'
+            'wu.masonry',
+            'firebase'
         ]);
 })();
