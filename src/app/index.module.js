@@ -16,6 +16,9 @@
             'app.quick-panel',
 
             // Sample
-            'app.sample'
+            // 'app.sample',
+
+            // Games
+            'app.games'
         ]);
 })();
