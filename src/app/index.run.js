@@ -1,25 +1,20 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
-        .module('fuse')
+        .module('omel-games')
         .run(runBlock);
 
     /** @ngInject */
-    function runBlock($rootScope, $timeout, $state)
-    {
+    function runBlock($rootScope, $timeout, $state) {
         // Activate loading indicator
-        var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function ()
-        {
+        var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function() {
             $rootScope.loadingProgress = true;
         });
 
         // De-activate loading indicator
-        var stateChangeSuccessEvent = $rootScope.$on('$stateChangeSuccess', function ()
-        {
-            $timeout(function ()
-            {
+        var stateChangeSuccessEvent = $rootScope.$on('$stateChangeSuccess', function() {
+            $timeout(function() {
                 $rootScope.loadingProgress = false;
             });
         });
@@ -28,8 +23,7 @@
         $rootScope.state = $state;
 
         // Cleanup
-        $rootScope.$on('$destroy', function ()
-        {
+        $rootScope.$on('$destroy', function() {
             stateChangeStartEvent();
             stateChangeSuccessEvent();
         });

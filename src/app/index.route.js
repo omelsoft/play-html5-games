@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('fuse')
+        .module('omel-games')
         .config(routeConfig);
 
     /** @ngInject */

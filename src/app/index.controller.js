@@ -1,14 +1,12 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
-        .module('fuse')
+        .module('omel-games')
         .controller('IndexController', IndexController);
 
     /** @ngInject */
-    function IndexController(fuseTheming)
-    {
+    function IndexController(fuseTheming) {
         var vm = this;
 
         // Data

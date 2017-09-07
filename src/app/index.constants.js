@@ -1,7 +1,6 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
-        .module('fuse');
+        .module('omel-games');
 })();

@@ -1,14 +1,12 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
-        .module('fuse')
+        .module('omel-games')
         .config(config);
 
     /** @ngInject */
-    function config($translateProvider)
-    {
+    function config($translateProvider) {
         // Put your common app configurations here
 
         // angular-translate configuration

@@ -1,11 +1,7 @@
 (function() {
     'use strict';
-
-    /**
-     * Main module of the Fuse
-     */
     angular
-        .module('fuse', [
+        .module('omel-games', [
 
             // Core
             'app.core',
