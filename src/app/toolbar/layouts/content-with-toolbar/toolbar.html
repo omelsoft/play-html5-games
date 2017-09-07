@@ -25,17 +25,17 @@
                 <md-button class="user-button" ng-click="$mdOpenMenu()" aria-label="User settings" translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS">
                     <div layout="row" layout-align="space-between center">
                         <div class="avatar-wrapper">
-                            <img md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg">
+                            <img md-menu-align-target class="avatar" ng-src="{{ vm.setProfilePhoto(vm.currentUser) }}" src="assets/images/avatars/profile.jpg">
                             <md-icon md-font-icon ng-class="vm.userStatus.icon" ng-style="{'color': vm.userStatus.color }" class="icon status s16">
                             </md-icon>
                         </div>
-                        <span class="username" hide-sm>John Doe</span>
+                        <span class="username" hide-sm>{{ vm.getDisplayName(vm.currentUser) }}</span>
                         <md-icon md-font-icon="icon-chevron-down" class="icon s16" hide-sm></md-icon>
                     </div>
                 </md-button>
 
                 <md-menu-content width="3">
-                    <md-menu-item class="md-indent" ui-sref="app.pages_profile">
+                    <!-- <md-menu-item class="md-indent" ui-sref="app.pages_profile">
                         <md-icon md-font-icon="icon-account" class="icon"></md-icon>
                         <md-button>My Profile</md-button>
                     </md-menu-item>
@@ -43,7 +43,7 @@
                     <md-menu-item class="md-indent" ui-sref="app.mail">
                         <md-icon md-font-icon="icon-email" class="icon"></md-icon>
                         <md-button>Inbox</md-button>
-                    </md-menu-item>
+                    </md-menu-item> -->
 
                     <md-menu-item class="md-indent">
                         <md-icon md-font-icon ng-class="vm.userStatus.icon" ng-style="{'color': vm.userStatus.color }" class="icon"></md-icon>

@@ -3,10 +3,10 @@
 
     angular
         .module('app.toolbar')
-        .controller('ToolbarController', ToolbarController);
+        .controller('ToolbarController', ['$rootScope', '$q', '$location', '$state', '$cookies', 'Firebase', 'Auth', '$timeout', '$mdSidenav', '$translate', '$mdToast', 'msNavigationService', ToolbarController]);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService) {
+    function ToolbarController($rootScope, $q, $location, $state, $cookies, $timeout, Firebase, Auth, $mdSidenav, $translate, $mdToast, msNavigationService) {
         var vm = this;
 
         // Data
@@ -63,11 +63,15 @@
             // }
         };
 
+        vm.currentUser = $cookies.getObject('currentUser');
+
         // Methods
         vm.toggleSidenav = toggleSidenav;
         vm.logout = logout;
         vm.changeLanguage = changeLanguage;
         vm.setUserStatus = setUserStatus;
+        vm.setProfilePhoto = setProfilePhoto;
+        vm.getDisplayName = getDisplayName;
         vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;
         vm.toggleMsNavigationFolded = toggleMsNavigationFolded;
         vm.search = search;
@@ -107,10 +111,43 @@
         }
 
         /**
+         * Sets the profile photo in the toolbar
+         * 
+         * @param {any} profile 
+         * @returns 
+         */
+        function setProfilePhoto(profile) {
+            if (profile.photoURL) {
+                return profile.photoURL;
+            } else {
+                return 'assets/images/avatars/profile.jpg';
+            }
+        }
+
+        /**
+         * Returns the Display Name or Email of the Logged in User
+         * 
+         * @param {any} currentUser 
+         */
+        function getDisplayName(currentUser) {
+            if (currentUser.displayName) {
+                return currentUser.displayName;
+            } else {
+                return currentUser.email;
+            }
+        }
+
+        /**
          * Logout Function
          */
         function logout() {
-            // Do logout here..
+            $rootScope.error = null;
+            Firebase.$signOut().then(function() {
+                $cookies.remove('currentUser');
+                $location.path('/login');
+            }).catch(function(error) {
+                $rootScope.error = error;
+            });
         }
 
         /**

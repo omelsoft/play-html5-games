@@ -3,17 +3,22 @@
 
     angular
         .module('app.games')
-        .controller('GamesController', GamesController);
+        .controller('GamesController', ['$cookies', '$rootScope', '$location', 'NewGames', GamesController]);
 
     /** @ngInject */
-    function GamesController(NewGames) {
+    function GamesController($cookies, $rootScope, $location, NewGames) {
         var vm = this;
 
         // Data
+        vm.isLoggedIn = false;
         vm.games = NewGames.games;
-        console.log(vm.games);
-        // Methods
 
+        var currentUser = $cookies.getObject('currentUser');
+        if (!currentUser) {
+            $location.path('/login');
+        } else {
+            vm.isLoggedIn = true;
+        }
 
     }
 })();

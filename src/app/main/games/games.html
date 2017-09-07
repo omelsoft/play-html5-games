@@ -1,4 +1,4 @@
-<div class="masonry" masonry="{ transitionDuration: '0.4s' }" load-images="true">
+<div ng-if="vm.isLoggedIn" class="masonry" masonry="{ transitionDuration: '0.4s' }" load-images="true">
     <!-- items -->
     <div class="masonry-brick" width="300" ng-repeat="game in vm.games track by $index">
         <md-card>
