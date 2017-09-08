@@ -1,6 +1,6 @@
-<div ng-if="vm.isLoggedIn" class="masonry" masonry="{ transitionDuration: '0.5s' }" load-images="true">
+<div class="masonry" masonry="{ transitionDuration: '0.5s' }" reload-on-show load-images="true">
     <!-- items -->
-    <div class="masonry-brick" dir-paginate="game in vm.games | itemsPerPage: 20" pagination-id="games">
+    <div class="masonry-brick" prepend="isPrepended()" dir-paginate="game in $root.games | itemsPerPage: 20" pagination-id="games" current-page="$root.currentPage">
         <md-card>
             <a ng-click="vm.viewGame(game)">
                 <img width="100%" ng-src="{{game.teaserBig}}" class="md-card-image" alt="Washed Out">
@@ -29,5 +29,5 @@
     </div>
 </div>
 <div class="game-pagination">
-    <dir-pagination-controls pagination-id="games"></dir-pagination-controls>
+    <dir-pagination-controls pagination-id="games" on-page-change="vm.updatePagination(newPageNumber, oldPageNumber)"></dir-pagination-controls>
 </div>

@@ -3,10 +3,10 @@
 
     angular
         .module('app.core')
-        .factory('Game', ['$cookies', GameService]);
+        .factory('Game', ['$cookies', '$rootScope', GameService]);
 
     /** @ngInject */
-    function GameService($cookies) {
+    function GameService($cookies, $rootScope) {
         var service = {
             set: set,
             get: get,

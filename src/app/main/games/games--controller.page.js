@@ -3,14 +3,15 @@
 
     angular
         .module('app.games.latest')
-        .controller('GamesController', ['$cookies', '$state', '$rootScope', '$location', 'NewGames', 'ngMeta', 'Game', GamesController]);
+        .controller('GamesPageController', ['$cookies', '$state', '$rootScope', '$location', 'NewGames', 'ngMeta', 'Game', GamesPageController]);
 
     /** @ngInject */
-    function GamesController($cookies, $state, $rootScope, $location, NewGames, ngMeta, Game) {
+    function GamesPageController($cookies, $state, $rootScope, $location, NewGames, ngMeta, Game) {
         var vm = this;
+        vm.params = $state.params;
 
         ngMeta.init();
-        ngMeta.setTitle('Find the Game of your life', ' | Omel Games');
+        ngMeta.setTitle('Find the Game of your life', ' | Page ' + vm.params.page);
         ngMeta.setTag('author', 'Omel Games');
         ngMeta.setTag('image', 'http://placeholder.com/abc.jpg');
         ngMeta.setDefaultTag('author', 'Omel Games');
@@ -20,7 +21,7 @@
         vm.games = NewGames.games;
 
         $rootScope.games = vm.games;
-        $rootScope.currentPage = $rootScope.currentPage ? $rootScope.currentPage : 1;
+        $rootScope.currentPage = vm.params.page;
 
         var currentUser = $cookies.getObject('currentUser');
         if (!currentUser) {

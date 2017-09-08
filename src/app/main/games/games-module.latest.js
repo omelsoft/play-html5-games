@@ -3,10 +3,11 @@
 
     angular
         .module('app.games.latest', [])
-        .config(config);
+        .config(['$stateProvider', '$translatePartialLoaderProvider', 'msApiProvider', config]);
 
     /** @ngInject */
     function config($stateProvider, $translatePartialLoaderProvider, msApiProvider) {
+
         // State
         $stateProvider
             .state('app.games', {
@@ -15,6 +16,20 @@
                     'content@app': {
                         templateUrl: 'app/main/games/games.latest.html',
                         controller: 'GamesController as vm'
+                    }
+                },
+                resolve: {
+                    NewGames: function(msApi) {
+                        return msApi.resolve('games@get');
+                    }
+                }
+            })
+            .state('app.games_page', {
+                url: '/latest/page-:page',
+                views: {
+                    'content@app': {
+                        templateUrl: 'app/main/games/games.latest.html',
+                        controller: 'GamesPageController as vm'
                     }
                 },
                 resolve: {
