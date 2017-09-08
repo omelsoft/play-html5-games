@@ -35,7 +35,7 @@
                 };
 
                 $cookies.putObject('currentUser', user);
-                $location.path('/games');
+                $location.path('/latest/');
             }
         });
 

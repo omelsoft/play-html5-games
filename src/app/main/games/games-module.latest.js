@@ -21,12 +21,6 @@
                     NewGames: function(msApi) {
                         return msApi.resolve('games@get');
                     }
-                },
-                data: {
-                    meta: {
-                        'title': 'New Games',
-                        'description': 'Find the Latest Games'
-                    }
                 }
             });
 
@@ -34,7 +28,7 @@
         $translatePartialLoaderProvider.addPart('app/main/games');
 
         // Api
-        msApiProvider.register('games', ['app/data/games/games.old.json']);
+        msApiProvider.register('games', ['app/data/games/games.json']);
 
     }
 })();
