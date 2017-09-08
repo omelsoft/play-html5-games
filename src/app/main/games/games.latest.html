@@ -3,7 +3,7 @@
     <div class="masonry-brick" prepend="isPrepended()" dir-paginate="game in $root.games | itemsPerPage: 24" pagination-id="games" current-page="$root.currentPage">
         <md-card>
             <a ng-click="vm.viewGame(game)">
-                <img width="100%" ng-src="{{game.teaserBig}}" class="md-card-image" alt="Washed Out">
+                <img width="100%" ng-src="{{game.teaserBig}}" class="md-card-image" alt="{{ game.title }}">
             </a>
             <md-card-title>
                 <md-card-title-text>

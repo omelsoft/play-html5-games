@@ -8,7 +8,7 @@
     /** @ngInject */
     function ToolbarController($rootScope, $q, $location, $state, $cookies, $timeout, Firebase, Auth, $mdSidenav, $translate, $mdToast, msNavigationService, Game) {
         var vm = this;
-        console.log(Game);
+
         // Data
         $rootScope.global = {
             search: ''

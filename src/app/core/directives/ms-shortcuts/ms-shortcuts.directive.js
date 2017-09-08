@@ -22,6 +22,8 @@
 
         vm.results = null;
         vm.shortcuts = [];
+        vm.gameResults = [];
+        vm.gameShortcuts = [];
 
         vm.sortableOptions = {
             ghostClass: 'ghost',
@@ -34,6 +36,12 @@
 
         // Methods
         vm.populateGameResults = populateGameResults;
+        vm.loadGameShortcuts = loadGameShortcuts;
+        vm.saveGameShortcuts = saveGameShortcuts;
+        vm.addGameShortcut = addGameShortcut;
+        vm.removeGameShortcut = removeGameShortcut;
+        vm.handleGameResultClick = handleGameResultClick;
+
         vm.populateResults = populateResults;
         vm.loadShortcuts = loadShortcuts;
         vm.saveShortcuts = saveShortcuts;
@@ -54,14 +62,20 @@
 
         function init() {
             // Load the shortcuts
-            vm.loadShortcuts().then(
+            // vm.loadShortcuts().then(
+            vm.loadGameShortcuts().then(
                 // Success
                 function(response) {
-                    vm.shortcuts = response;
+                    // vm.shortcuts = response;
+                    vm.gameShortcuts = response;
+
+                    console.log(response);
 
                     // Add shortcuts as results by default
-                    if (vm.shortcuts.length > 0) {
-                        vm.results = response;
+                    // if (vm.shortcuts.length > 0) {
+                    //     vm.results = response;
+                    if (vm.gameShortcuts.length > 0) {
+                        vm.gameResults = response;
                     }
                 }
             );
@@ -99,6 +113,9 @@
             });
         }
 
+        /**
+         * Populate the results from the list of games
+         */
         function populateGameResults() {
             var games = $rootScope.games,
                 deferred = $q.defer(),
@@ -116,6 +133,84 @@
             }, 1000);
 
             return deferred.promise;
+        }
+
+        /**
+         * Load Game Shortcuts 
+         */
+        function loadGameShortcuts() {
+            var deferred = $q.defer();
+
+            // For the demo purposes, we will
+            // load the shortcuts from the cookies.
+            // But here you can make an API call
+            // to load them from the DB.
+            var shortcuts = angular.fromJson($cookies.get('OMEL-GAMES.gameShortcuts'));
+
+            if (angular.isUndefined(shortcuts)) {
+                shortcuts = [];
+            }
+
+            // Resolve the promise
+            deferred.resolve(shortcuts);
+
+            return deferred.promise;
+        }
+
+        /**
+         * Save Game shortcuts 
+         */
+        function saveGameShortcuts() {
+            var deferred = $q.defer();
+
+            // For the demo purposes, we will
+            // keep the shortcuts in the cookies.
+            // But here you can make an API call
+            // to save them to the DB.
+            $cookies.put('OMEL-GAMES.gameShortcuts', angular.toJson(vm.gameShortcuts));
+
+            // Fake the service delay
+            $timeout(function() {
+                deferred.resolve({ 'success': true });
+            }, 250);
+
+            return deferred.promise;
+        }
+
+        /**
+         * Add Game shortcuts 
+         */
+        function addGameShortcut(item) {
+            var game = item.link.split('/');
+            var shortcut = {
+                'title': item.title,
+                'thumb': item.thumb,
+                'state': 'app.games_detail',
+                'params': { title: game[3] },
+                'hasShortcut': true
+            };
+            vm.gameShortcuts.push(shortcut);
+            console.log(vm.gameShortcuts);
+        }
+
+        /**
+         * Remove Game Shortcuts 
+         */
+        function removeGameShortcut() {
+
+        }
+
+        /**
+         * Handler game result click 
+         * @param item
+         */
+        function handleGameResultClick(item) {
+            // Add or remove the shortcut
+            if (item.hasShortcut) {
+                vm.removeGameShortcut(item);
+            } else {
+                vm.addGameShortcut(item);
+            }
         }
 
         /**
@@ -190,7 +285,7 @@
             // load the shortcuts from the cookies.
             // But here you can make an API call
             // to load them from the DB.
-            var shortcuts = angular.fromJson($cookies.get('FUSE.shortcuts'));
+            var shortcuts = angular.fromJson($cookies.get('OMEL-GAMES.shortcuts'));
 
             // No cookie available. Generate one
             // for the demo purposes...
@@ -207,7 +302,7 @@
                     'hasShortcut': true
                 }];
 
-                $cookies.put('FUSE.shortcuts', angular.toJson(shortcuts));
+                $cookies.put('OMEL-GAMES.shortcuts', angular.toJson(shortcuts));
             }
 
             // Resolve the promise
@@ -226,7 +321,7 @@
             // keep the shortcuts in the cookies.
             // But here you can make an API call
             // to save them to the DB.
-            $cookies.put('FUSE.shortcuts', angular.toJson(vm.shortcuts));
+            $cookies.put('OMEL-GAMES.shortcuts', angular.toJson(vm.shortcuts));
 
             // Fake the service delay
             $timeout(function() {
