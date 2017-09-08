@@ -29,12 +29,16 @@
         // Methods
         vm.viewGame = viewGame;
 
+        /**
+         * Function to view the game details.
+         * 
+         * @param {any} game 
+         */
         function viewGame(game) {
             Game.set(game);
             $state.go('app.games_detail', {
-                title: game.title.replace(/ /g, '-')
+                title: game.title.replace(/ /g, '-').toLowerCase()
             });
-            console.log(Game.get());
         }
     }
 })();

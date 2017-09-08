@@ -1,11 +1,9 @@
 #layout-content-with-toolbar {
-
     #toolbar {
         padding: 0 0 0 16px;
-        
         .logo {
             margin-right: 16px;
-
+            cursor: pointer;
             .logo-image {
                 display: block;
                 background: material-color('light-blue', '600');
@@ -19,7 +17,6 @@
                 font-weight: 500;
                 border-radius: 2px;
             }
-
             .logo-text {
                 color: rgba(0, 0, 0, 0.87);
                 margin-left: 16px;

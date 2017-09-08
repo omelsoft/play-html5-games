@@ -26,6 +26,15 @@
                         'description': 'Find the Latest Games'
                     }
                 }
+            })
+            .state('app.games_play', {
+                url: '/game/:title/play',
+                views: {
+                    'content@app': {
+                        templateUrl: 'app/main/games/games.details.html',
+                        controller: 'GamePlayController as vm'
+                    }
+                }
             });
 
         // Translation
