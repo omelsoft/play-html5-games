@@ -1,6 +1,6 @@
-<div ng-if="vm.isLoggedIn" class="masonry" masonry="{ transitionDuration: '0.4s' }" load-images="true">
+<div ng-if="vm.isLoggedIn" class="masonry" masonry="{ transitionDuration: '0.5s' }" load-images="true">
     <!-- items -->
-    <div class="masonry-brick" width="300" ng-repeat="game in vm.games track by $index">
+    <div class="masonry-brick" dir-paginate="game in vm.games | itemsPerPage: 10" pagination-id="games">
         <md-card>
             <a ng-click="vm.viewGame(game)">
                 <img width="100%" ng-src="{{game.teaserBig}}" class="md-card-image" alt="Washed Out">

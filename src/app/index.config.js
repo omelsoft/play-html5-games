@@ -6,7 +6,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($translateProvider, ngMetaProvider) {
+    function config($translateProvider, ngMetaProvider, $provide) {
         // Put your common app configurations here
 
         // angular-translate configuration
@@ -20,6 +20,13 @@
         ngMetaProvider.setDefaultTitle('Find the Game of your life');
         ngMetaProvider.setDefaultTitleSuffix(' | Omel Games');
         ngMetaProvider.setDefaultTag('author', 'Omel Games');
+
+        $provide.decorator('masonryDirective', function($delegate) {
+            var directive = $delegate[0];
+            directive.link.post = directive.link.pre;
+            delete(directive.link.pre);
+            return $delegate;
+        });
     }
 
 })();
