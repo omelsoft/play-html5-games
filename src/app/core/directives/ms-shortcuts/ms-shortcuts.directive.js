@@ -1,15 +1,13 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
         .module('app.core')
-        .controller('MsShortcutsController', MsShortcutsController)
+        .controller('MsShortcutsController', ['$rootScope', '$scope', '$cookies', '$document', '$timeout', '$q', 'msNavigationService', MsShortcutsController])
         .directive('msShortcuts', msShortcutsDirective);
 
     /** @ngInject */
-    function MsShortcutsController($scope, $cookies, $document, $timeout, $q, msNavigationService)
-    {
+    function MsShortcutsController($rootScope, $scope, $cookies, $document, $timeout, $q, msNavigationService) {
         var vm = this;
 
         // Data
@@ -26,16 +24,16 @@
         vm.shortcuts = [];
 
         vm.sortableOptions = {
-            ghostClass   : 'ghost',
+            ghostClass: 'ghost',
             forceFallback: true,
             fallbackClass: 'dragging',
-            onSort       : function ()
-            {
+            onSort: function() {
                 vm.saveShortcuts();
             }
         };
 
         // Methods
+        vm.populateGameResults = populateGameResults;
         vm.populateResults = populateResults;
         vm.loadShortcuts = loadShortcuts;
         vm.saveShortcuts = saveShortcuts;
@@ -54,33 +52,27 @@
 
         init();
 
-        function init()
-        {
+        function init() {
             // Load the shortcuts
             vm.loadShortcuts().then(
                 // Success
-                function (response)
-                {
+                function(response) {
                     vm.shortcuts = response;
 
                     // Add shortcuts as results by default
-                    if ( vm.shortcuts.length > 0 )
-                    {
+                    if (vm.shortcuts.length > 0) {
                         vm.results = response;
                     }
                 }
             );
 
             // Watch the model changes to trigger the search
-            $scope.$watch('MsShortcuts.query', function (current, old)
-            {
-                if ( angular.isUndefined(current) )
-                {
+            $scope.$watch('MsShortcuts.query', function(current, old) {
+                if (angular.isUndefined(current)) {
                     return;
                 }
 
-                if ( angular.equals(current, old) )
-                {
+                if (angular.equals(current, old)) {
                     return;
                 }
 
@@ -88,20 +80,18 @@
                 vm.resultsLoading = true;
 
                 // Populate the results
-                vm.populateResults().then(
+                // vm.populateResults().then( <- This was the original
+                vm.populateGameResults().then(
                     // Success
-                    function (response)
-                    {
+                    function(response) {
                         vm.results = response;
                     },
                     // Error
-                    function ()
-                    {
+                    function() {
                         vm.results = [];
                     }
                 ).finally(
-                    function ()
-                    {
+                    function() {
                         // Hide the loader
                         vm.resultsLoading = false;
                     }
@@ -109,11 +99,29 @@
             });
         }
 
+        function populateGameResults() {
+            var games = $rootScope.games,
+                deferred = $q.defer(),
+                result;
+
+            result = games.filter(function(item) {
+                if (angular.lowercase(item.title).search(angular.lowercase(vm.query)) > -1) {
+                    return true;
+                }
+            });
+
+            // Fake service delay
+            $timeout(function() {
+                deferred.resolve(result);
+            }, 1000);
+
+            return deferred.promise;
+        }
+
         /**
          * Populate the results
          */
-        function populateResults()
-        {
+        function populateResults() {
             var results = [],
                 flatNavigation = msNavigationService.getFlatNavigation(),
                 deferred = $q.defer();
@@ -121,51 +129,40 @@
             // Iterate through the navigation array and
             // make sure it doesn't have any groups or
             // none ui-sref items
-            for ( var x = 0; x < flatNavigation.length; x++ )
-            {
-                if ( flatNavigation[x].uisref )
-                {
+            for (var x = 0; x < flatNavigation.length; x++) {
+                if (flatNavigation[x].uisref) {
                     results.push(flatNavigation[x]);
                 }
             }
 
             // If there is a query, filter the results
-            if ( vm.query )
-            {
-                results = results.filter(function (item)
-                {
-                    if ( angular.lowercase(item.title).search(angular.lowercase(vm.query)) > -1 )
-                    {
+            if (vm.query) {
+                results = results.filter(function(item) {
+                    if (angular.lowercase(item.title).search(angular.lowercase(vm.query)) > -1) {
                         return true;
                     }
                 });
 
                 // Iterate through one last time and
                 // add required properties to items
-                for ( var i = 0; i < results.length; i++ )
-                {
+                for (var i = 0; i < results.length; i++) {
                     // Add false to hasShortcut by default
                     results[i].hasShortcut = false;
 
                     // Test if the item is in the shortcuts list
-                    for ( var y = 0; y < vm.shortcuts.length; y++ )
-                    {
-                        if ( vm.shortcuts[y]._id === results[i]._id )
-                        {
+                    for (var y = 0; y < vm.shortcuts.length; y++) {
+                        if (vm.shortcuts[y]._id === results[i]._id) {
                             results[i].hasShortcut = true;
                             break;
                         }
                     }
                 }
-            }
-            else
-            {
+            } else {
                 // If the query is empty, that means
                 // there is nothing to search for so
                 // we will populate the results with
                 // current shortcuts if there is any
-                if ( vm.shortcuts.length > 0 )
-                {
+                if (vm.shortcuts.length > 0) {
                     results = vm.shortcuts;
                 }
             }
@@ -174,8 +171,7 @@
             vm.selectedResultIndex = 0;
 
             // Fake the service delay
-            $timeout(function ()
-            {
+            $timeout(function() {
                 // Resolve the promise
                 deferred.resolve(results);
             }, 250);
@@ -187,8 +183,7 @@
         /**
          * Load shortcuts
          */
-        function loadShortcuts()
-        {
+        function loadShortcuts() {
             var deferred = $q.defer();
 
             // For the demo purposes, we will
@@ -199,21 +194,18 @@
 
             // No cookie available. Generate one
             // for the demo purposes...
-            if ( angular.isUndefined(shortcuts) )
-            {
-                shortcuts = [
-                    {
-                        'title'      : 'Sample',
-                        'icon'       : 'icon-tile-four',
-                        'state'      : 'app.sample',
-                        'weight'     : 1,
-                        'children'   : [],
-                        '_id'        : 'sample',
-                        '_path'      : 'apps.sample',
-                        'uisref'     : 'app.sample',
-                        'hasShortcut': true
-                    }
-                ];
+            if (angular.isUndefined(shortcuts)) {
+                shortcuts = [{
+                    'title': 'Sample',
+                    'icon': 'icon-tile-four',
+                    'state': 'app.sample',
+                    'weight': 1,
+                    'children': [],
+                    '_id': 'sample',
+                    '_path': 'apps.sample',
+                    'uisref': 'app.sample',
+                    'hasShortcut': true
+                }];
 
                 $cookies.put('FUSE.shortcuts', angular.toJson(shortcuts));
             }
@@ -227,8 +219,7 @@
         /**
          * Save the shortcuts
          */
-        function saveShortcuts()
-        {
+        function saveShortcuts() {
             var deferred = $q.defer();
 
             // For the demo purposes, we will
@@ -238,9 +229,8 @@
             $cookies.put('FUSE.shortcuts', angular.toJson(vm.shortcuts));
 
             // Fake the service delay
-            $timeout(function ()
-            {
-                deferred.resolve({'success': true});
+            $timeout(function() {
+                deferred.resolve({ 'success': true });
             }, 250);
 
             return deferred.promise;
@@ -251,8 +241,7 @@
          *
          * @param item
          */
-        function addShortcut(item)
-        {
+        function addShortcut(item) {
             // Update the hasShortcut status
             item.hasShortcut = true;
 
@@ -268,33 +257,26 @@
          *
          * @param item
          */
-        function removeShortcut(item)
-        {
+        function removeShortcut(item) {
             // Update the hasShortcut status
             item.hasShortcut = false;
 
             // Remove the shortcut
-            for ( var x = 0; x < vm.shortcuts.length; x++ )
-            {
-                if ( vm.shortcuts[x]._id === item._id )
-                {
+            for (var x = 0; x < vm.shortcuts.length; x++) {
+                if (vm.shortcuts[x]._id === item._id) {
                     // Remove the x-th item from the array
                     vm.shortcuts.splice(x, 1);
 
                     // If we aren't searching for anything...
-                    if ( !vm.query )
-                    {
+                    if (!vm.query) {
                         // If all the shortcuts have been removed,
                         // null-ify the results
-                        if ( vm.shortcuts.length === 0 )
-                        {
+                        if (vm.shortcuts.length === 0) {
                             vm.results = null;
                         }
                         // Otherwise update the selected index
-                        else
-                        {
-                            if ( x >= vm.shortcuts.length )
-                            {
+                        else {
+                            if (x >= vm.shortcuts.length) {
                                 vm.selectedResultIndex = vm.shortcuts.length - 1;
                             }
                         }
@@ -311,15 +293,11 @@
          *
          * @param item
          */
-        function handleResultClick(item)
-        {
+        function handleResultClick(item) {
             // Add or remove the shortcut
-            if ( item.hasShortcut )
-            {
+            if (item.hasShortcut) {
                 vm.removeShortcut(item);
-            }
-            else
-            {
+            } else {
                 vm.addShortcut(item);
             }
         }
@@ -329,8 +307,7 @@
          *
          * @param event
          */
-        function absorbEvent(event)
-        {
+        function absorbEvent(event) {
             event.preventDefault();
         }
 
@@ -339,21 +316,18 @@
          *
          * @param event
          */
-        function handleKeydown(event)
-        {
+        function handleKeydown(event) {
             var keyCode = event.keyCode,
                 keys = [38, 40];
 
             // Prevent the default action if
             // one of the keys are pressed that
             // we are listening
-            if ( keys.indexOf(keyCode) > -1 )
-            {
+            if (keys.indexOf(keyCode) > -1) {
                 event.preventDefault();
             }
 
-            switch ( keyCode )
-            {
+            switch (keyCode) {
                 // Enter
                 case 13:
 
@@ -362,12 +336,11 @@
 
                     break;
 
-                // Up Arrow
+                    // Up Arrow
                 case 38:
 
                     // Decrease the selected result index
-                    if ( vm.selectedResultIndex - 1 >= 0 )
-                    {
+                    if (vm.selectedResultIndex - 1 >= 0) {
                         // Decrease the selected index
                         vm.selectedResultIndex--;
 
@@ -377,12 +350,11 @@
 
                     break;
 
-                // Down Arrow
+                    // Down Arrow
                 case 40:
 
                     // Increase the selected result index
-                    if ( vm.selectedResultIndex + 1 < vm.results.length )
-                    {
+                    if (vm.selectedResultIndex + 1 < vm.results.length) {
                         // Increase the selected index
                         vm.selectedResultIndex++;
 
@@ -402,10 +374,8 @@
          *
          * @param index
          */
-        function handleMouseenter(index)
-        {
-            if ( vm.ignoreMouseEvents )
-            {
+        function handleMouseenter(index) {
+            if (vm.ignoreMouseEvents) {
                 return;
             }
 
@@ -419,8 +389,7 @@
          * to make other functions to ignore
          * the mouse events
          */
-        function temporarilyIgnoreMouseEvents()
-        {
+        function temporarilyIgnoreMouseEvents() {
             // Set the variable
             vm.ignoreMouseEvents = true;
 
@@ -428,8 +397,7 @@
             $timeout.cancel(vm.mouseEventIgnoreTimeout);
 
             // Set the timeout
-            vm.mouseEventIgnoreTimeout = $timeout(function ()
-            {
+            vm.mouseEventIgnoreTimeout = $timeout(function() {
                 vm.ignoreMouseEvents = false;
             }, 250);
         }
@@ -439,26 +407,22 @@
          * always be visible on the results
          * area
          */
-        function ensureSelectedResultIsVisible()
-        {
+        function ensureSelectedResultIsVisible() {
             var resultsEl = $document.find('#ms-shortcut-add-menu').find('.results'),
                 selectedItemEl = angular.element(resultsEl.find('.result')[vm.selectedResultIndex]);
 
-            if ( resultsEl && selectedItemEl )
-            {
+            if (resultsEl && selectedItemEl) {
                 var top = selectedItemEl.position().top - 8,
                     bottom = selectedItemEl.position().top + selectedItemEl.outerHeight() + 8;
 
                 // Start ignoring mouse events
                 vm.temporarilyIgnoreMouseEvents();
 
-                if ( resultsEl.scrollTop() > top )
-                {
+                if (resultsEl.scrollTop() > top) {
                     resultsEl.scrollTop(top);
                 }
 
-                if ( bottom > (resultsEl.height() + resultsEl.scrollTop()) )
-                {
+                if (bottom > (resultsEl.height() + resultsEl.scrollTop())) {
                     resultsEl.scrollTop(bottom - resultsEl.height());
                 }
             }
@@ -467,29 +431,25 @@
         /**
          * Toggle mobile bar
          */
-        function toggleMobileBar()
-        {
+        function toggleMobileBar() {
             vm.mobileBarActive = !vm.mobileBarActive;
         }
     }
 
     /** @ngInject */
-    function msShortcutsDirective()
-    {
+    function msShortcutsDirective() {
         return {
-            restrict        : 'E',
-            scope           : {},
-            require         : 'msShortcuts',
-            controller      : 'MsShortcutsController as MsShortcuts',
+            restrict: 'E',
+            scope: {},
+            require: 'msShortcuts',
+            controller: 'MsShortcutsController as MsShortcuts',
             bindToController: {},
-            templateUrl     : 'app/core/directives/ms-shortcuts/ms-shortcuts.html',
-            compile         : function (tElement)
-            {
+            templateUrl: 'app/core/directives/ms-shortcuts/ms-shortcuts.html',
+            compile: function(tElement) {
                 // Add class
                 tElement.addClass('ms-shortcuts');
 
-                return function postLink(scope, iElement)
-                {
+                return function postLink(scope, iElement) {
                     // Data
 
                 };
