@@ -3,10 +3,10 @@
 
     angular
         .module('app.games.latest')
-        .controller('GamesPageController', ['$cookies', '$state', '$rootScope', '$location', 'NewGames', 'ngMeta', 'Game', GamesPageController]);
+        .controller('GamesPageController', ['$cookies', '$state', '$rootScope', '$scope', '$location', '$timeout', 'NewGames', 'ngMeta', 'Game', GamesPageController]);
 
     /** @ngInject */
-    function GamesPageController($cookies, $state, $rootScope, $location, NewGames, ngMeta, Game) {
+    function GamesPageController($cookies, $state, $rootScope, $scope, $location, $timeout, NewGames, ngMeta, Game) {
         var vm = this;
         vm.params = $state.params;
 
@@ -30,6 +30,12 @@
             vm.isLoggedIn = true;
         }
 
+        $scope.$watch('$viewContentLoaded', function() {
+            $timeout(function() {
+                $rootScope.loadingProgress = false;
+            });
+        });
+
         // Methods
         vm.viewGame = viewGame;
         vm.updatePagination = updatePagination;
@@ -40,9 +46,10 @@
          * @param {any} game 
          */
         function viewGame(game) {
+            var game = game.link.split('/');
             Game.set(game);
             $state.go('app.games_detail', {
-                title: game.title.replace(/ /g, '-').toLowerCase()
+                title: game[3]
             });
         }
 
@@ -53,11 +60,11 @@
          * @param {any} oldPageNumber 
          */
         function updatePagination(newPageNumber, oldPageNumber) {
+            $rootScope.loadingProgress = true;
             $rootScope.currentPage = newPageNumber;
             $state.go('app.games_page', {
                 page: newPageNumber
             });
-            console.log(newPageNumber, oldPageNumber);
         }
     }
 })();

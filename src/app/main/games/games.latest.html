@@ -1,6 +1,6 @@
 <div class="masonry" masonry="{ transitionDuration: '0.5s' }" reload-on-show load-images="true">
     <!-- items -->
-    <div class="masonry-brick" prepend="isPrepended()" dir-paginate="game in $root.games | itemsPerPage: 20" pagination-id="games" current-page="$root.currentPage">
+    <div class="masonry-brick" prepend="isPrepended()" dir-paginate="game in $root.games | itemsPerPage: 24" pagination-id="games" current-page="$root.currentPage">
         <md-card>
             <a ng-click="vm.viewGame(game)">
                 <img width="100%" ng-src="{{game.teaserBig}}" class="md-card-image" alt="Washed Out">
@@ -12,6 +12,11 @@
             </md-card-title>
             <md-card-content>
                 <div class="description short">{{ game.description }}</div>
+                <div class="rating">
+                    <span ng-repeat="rating in [1, 2, 3, 4, 5]">
+                        <md-icon class="material-icons star {{ game.rating < rating ? 'in-active rate-'+ rating : 'active rate-'+ rating }}"></md-icon>
+                    </span>
+                </div>
             </md-card-content>
             <md-divider></md-divider>
             <md-card-actions layout="row" layout-align="end center">
@@ -31,3 +36,4 @@
 <div class="game-pagination">
     <dir-pagination-controls pagination-id="games" on-page-change="vm.updatePagination(newPageNumber, oldPageNumber)"></dir-pagination-controls>
 </div>
+<div ng-include src="'app/core/layouts/content-footer.html'"></div>

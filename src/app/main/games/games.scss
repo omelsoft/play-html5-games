@@ -28,15 +28,41 @@
     }
     .pagination li {
         display: inline-block;
-        margin-right: 1px;
+        margin-right: 2px;
+        &.active a {
+            background-color: #eaeaea;
+            color: #039be5;
+            font-weight: bold;
+        }
         a {
             display: block;
             padding: 10px;
             background: white;
-            border: 1px solid red;
+            border: 1px solid #c5c5c5;
             min-width: 45px;
             text-align: center;
             text-decoration: none;
+        }
+    }
+}
+
+md-card {
+    md-card-title {
+        padding: 10px 16px 10px;
+        .md-headline {
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+}
+
+.rating {
+    margin-top: 10px;
+    text-align: center;
+    md-icon {
+        color: rgba(0, 0, 0, 0.54);
+        &.active {
+            color: rgba(3, 155, 229, 0.8);
         }
     }
 }
