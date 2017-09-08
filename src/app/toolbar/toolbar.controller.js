@@ -3,12 +3,12 @@
 
     angular
         .module('app.toolbar')
-        .controller('ToolbarController', ['$rootScope', '$q', '$location', '$state', '$cookies', '$timeout', 'Firebase', 'Auth', '$mdSidenav', '$translate', '$mdToast', 'msNavigationService', ToolbarController]);
+        .controller('ToolbarController', ['$rootScope', '$q', '$location', '$state', '$cookies', '$timeout', 'Firebase', 'Auth', '$mdSidenav', '$translate', '$mdToast', 'msNavigationService', 'Game', ToolbarController]);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $location, $state, $cookies, $timeout, Firebase, Auth, $mdSidenav, $translate, $mdToast, msNavigationService) {
+    function ToolbarController($rootScope, $q, $location, $state, $cookies, $timeout, Firebase, Auth, $mdSidenav, $translate, $mdToast, msNavigationService, Game) {
         var vm = this;
-
+        console.log(Game);
         // Data
         $rootScope.global = {
             search: ''
@@ -75,8 +75,9 @@
         vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;
         vm.toggleMsNavigationFolded = toggleMsNavigationFolded;
         vm.search = search;
-        vm.searchGames = searchGames;
         vm.searchResultClick = searchResultClick;
+        vm.searchGames = searchGames;
+        vm.searchResultGameClick = searchResultGameClick;
 
         //////////
 
@@ -241,6 +242,24 @@
         }
 
         /**
+         * Search result click action
+         *
+         * @param item
+         */
+        function searchResultClick(item) {
+            // If item has a link
+            if (item.uisref) {
+                // If there are state params,
+                // use them...
+                if (item.stateParams) {
+                    $state.go(item.state, item.stateParams);
+                } else {
+                    $state.go(item.state);
+                }
+            }
+        }
+
+        /**
          * search in list of games
          * 
          */
@@ -265,22 +284,12 @@
             return deferred.promise;
         }
 
-        /**
-         * Search result click action
-         *
-         * @param item
-         */
-        function searchResultClick(item) {
-            // If item has a link
-            if (item.uisref) {
-                // If there are state params,
-                // use them...
-                if (item.stateParams) {
-                    $state.go(item.state, item.stateParams);
-                } else {
-                    $state.go(item.state);
-                }
-            }
+        function searchResultGameClick(item) {
+            var game = item.link.split('/');
+            Game.set(game);
+            $state.go('app.games_detail', {
+                title: game[3]
+            });
         }
     }
 
