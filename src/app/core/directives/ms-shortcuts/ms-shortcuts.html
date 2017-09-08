@@ -5,7 +5,8 @@
             <div ng-repeat="shortcut in MsShortcuts.gameShortcuts" layout="row" layout-align="center center">
                 <md-button back-button back-to="{{shortcut.state}}" params="shortcut.params" class="md-icon-button shortcut" aria-label="{{shortcut.title}}">
                     <md-icon ng-if="shortcut.icon" md-font-icon="{{shortcut.icon}}" class="icon s24"></md-icon>
-                    <div ng-if="!shortcut.icon" class="first-letter">{{shortcut.title.charAt(0)}}</div>
+                    <!-- <div ng-if="!shortcut.icon" class="first-letter">{{shortcut.title.charAt(0)}}</div> -->
+                    <img class="shortcut" ng-if="shortcut.thumb" ng-src="{{shortcut.thumb}}" />
                     <md-tooltip md-direction="bottom">{{shortcut.title}}</md-tooltip>
                 </md-button>
             </div>
@@ -31,10 +32,10 @@
                         <input type="text" placeholder="Search" flex ng-model="MsShortcuts.query" ng-model-options="MsShortcuts.queryOptions" ng-keydown="MsShortcuts.handleKeydown($event)">
                     </div>
 
-                    <div class="results" ng-if="MsShortcuts.results" ms-scroll>
-                        <div class="no-results" ng-if="MsShortcuts.results.length === 0">No Results!</div>
+                    <div class="results" ng-if="MsShortcuts.gameResults" ms-scroll>
+                        <div class="no-results" ng-if="MsShortcuts.gameResults.length === 0">No Results!</div>
 
-                        <div class="result" ng-repeat="result in MsShortcuts.results" ng-click="MsShortcuts.handleGameResultClick(result)" ng-mouseenter="MsShortcuts.handleMouseenter($index)" ng-mousedown="MsShortcuts.absorbEvent($event)" ng-class="{'selected': $index == MsShortcuts.selectedResultIndex}"
+                        <div class="result" ng-repeat="result in MsShortcuts.gameResults" ng-click="MsShortcuts.handleGameResultClick(result)" ng-mouseenter="MsShortcuts.handleMouseenter($index)" ng-mousedown="MsShortcuts.absorbEvent($event)" ng-class="{'selected': $index == MsShortcuts.selectedResultIndex}"
                             md-prevent-menu-close="md-prevent-menu-close" md-ink-ripple>
                             <div layout="row" layout-align="start space-between">
                                 <div layout="row" layout-align="start center" flex>

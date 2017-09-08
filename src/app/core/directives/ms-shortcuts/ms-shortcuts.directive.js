@@ -69,8 +69,6 @@
                     // vm.shortcuts = response;
                     vm.gameShortcuts = response;
 
-                    console.log(response);
-
                     // Add shortcuts as results by default
                     // if (vm.shortcuts.length > 0) {
                     //     vm.results = response;
@@ -98,11 +96,13 @@
                 vm.populateGameResults().then(
                     // Success
                     function(response) {
-                        vm.results = response;
+                        // vm.results = response;
+                        vm.gameResults = response;
                     },
                     // Error
                     function() {
-                        vm.results = [];
+                        // vm.results = [];
+                        vm.gameResults = [];
                     }
                 ).finally(
                     function() {
@@ -189,15 +189,45 @@
                 'params': { title: game[3] },
                 'hasShortcut': true
             };
+
             vm.gameShortcuts.push(shortcut);
-            console.log(vm.gameShortcuts);
+
+            // Save the shortcuts
+            vm.saveGameShortcuts();
         }
 
         /**
          * Remove Game Shortcuts 
          */
-        function removeGameShortcut() {
+        function removeGameShortcut(item) {
+            // Update the hasShortcut status
+            item.hasShortcut = false;
 
+            // Remove the shortcut
+            for (var x = 0; x < vm.gameShortcuts.length; x++) {
+                if (vm.gameShortcuts[x].title === item.title) {
+                    // Remove the x-th item from the array
+                    vm.gameShortcuts.splice(x, 1);
+
+                    // If we aren't searching for anything...
+                    if (!vm.query) {
+                        // If all the shortcuts have been removed,
+                        // null-ify the results
+                        if (vm.gameShortcuts.length === 0) {
+                            vm.gameResults = null;
+                        }
+                        // Otherwise update the selected index
+                        else {
+                            if (x >= vm.gameShortcuts.length) {
+                                vm.selectedResultIndex = vm.gameShortcuts.length - 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Save the shortcuts
+            vm.saveGameShortcuts();
         }
 
         /**
