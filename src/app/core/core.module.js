@@ -13,6 +13,7 @@
             'pascalprecht.translate',
             'ui.router',
             'wu.masonry',
-            'firebase'
+            'firebase',
+            'ngMeta'
         ]);
 })();
