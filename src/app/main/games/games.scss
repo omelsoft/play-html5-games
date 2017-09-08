@@ -20,6 +20,27 @@
     }
 }
 
+.game-pagination {
+    text-align: center;
+    ul {
+        display: block;
+        list-style: none;
+    }
+    .pagination li {
+        display: inline-block;
+        margin-right: 1px;
+        a {
+            display: block;
+            padding: 10px;
+            background: white;
+            border: 1px solid red;
+            min-width: 45px;
+            text-align: center;
+            text-decoration: none;
+        }
+    }
+}
+
 @media all and (min-width: 768px) and (max-width: 1000px) {
     .masonry {
         padding: 0px;
