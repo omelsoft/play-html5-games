@@ -31,7 +31,7 @@
         // Evaluate user if logged in
         var currentUser = $cookies.getObject('currentUser');
 
-        if (currentUser === undefined && restrictedPage) {
+        if (!currentUser && restrictedPage) {
             $location.path('/login/');
         } else {
             $state.go('app.games');
