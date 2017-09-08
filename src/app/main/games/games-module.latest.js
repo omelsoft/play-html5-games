@@ -10,7 +10,7 @@
         // State
         $stateProvider
             .state('app.games', {
-                url: '/games',
+                url: '/latest/',
                 views: {
                     'content@app': {
                         templateUrl: 'app/main/games/games.latest.html',

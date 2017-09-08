@@ -10,7 +10,7 @@
         // State
         $stateProvider
             .state('app.games_detail', {
-                url: '/games/:title',
+                url: '/games/:title/',
                 params: {
                     title: null
                 },
