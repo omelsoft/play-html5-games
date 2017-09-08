@@ -3,10 +3,16 @@
 
     angular
         .module('omel-games')
-        .run(runBlock);
+        .run(['$rootScope', '$timeout', '$state', '$location', '$cookies', runBlock]);
 
     /** @ngInject */
-    function runBlock($rootScope, $timeout, $state) {
+    function runBlock($rootScope, $timeout, $state, $location, $cookies) {
+        // Set public pages
+        var publicPages = [
+            '/login/'
+        ];
+        var restrictedPage = publicPages.indexOf($location.path()) === -1;
+
         // Activate loading indicator
         var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function() {
             $rootScope.loadingProgress = true;
@@ -21,6 +27,15 @@
 
         // Store state in the root scope for easy access
         $rootScope.state = $state;
+
+        // Evaluate user if logged in
+        var currentUser = $cookies.getObject('currentUser');
+
+        if (currentUser === undefined && restrictedPage) {
+            $location.path('/login/');
+        } else {
+            $state.go('app.games');
+        }
 
         // Cleanup
         $rootScope.$on('$destroy', function() {
