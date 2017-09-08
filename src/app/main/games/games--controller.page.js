@@ -43,10 +43,10 @@
         /**
          * Function to view the game details.
          * 
-         * @param {any} game 
+         * @param {any} item 
          */
-        function viewGame(game) {
-            var game = game.link.split('/');
+        function viewGame(item) {
+            var game = item.link.split('/');
             Game.set(game);
             $state.go('app.games_detail', {
                 title: game[3]

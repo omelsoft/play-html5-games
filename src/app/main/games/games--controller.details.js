@@ -3,10 +3,10 @@
 
     angular
         .module('app.games.detail')
-        .controller('GamesDetailsController', ['$cookies', '$scope', '$rootScope', '$location', '$state', 'ngMeta', 'NewGames', 'Game', GamesDetailsController]);
+        .controller('GamesDetailsController', ['$window', '$cookies', '$scope', '$rootScope', '$location', '$state', 'ngMeta', 'NewGames', 'Game', GamesDetailsController]);
 
     /** @ngInject */
-    function GamesDetailsController($cookies, $scope, $rootScope, $location, $state, ngMeta, NewGames, Game) {
+    function GamesDetailsController($window, $cookies, $scope, $rootScope, $location, $state, ngMeta, NewGames, Game) {
         var vm = this;
 
 
