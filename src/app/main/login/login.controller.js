@@ -3,10 +3,10 @@
 
     angular
         .module('app.login')
-        .controller('LoginController', ['$cookies', '$location', 'Firebase', 'Auth', '$mdDialog', 'ErrorCodes', LoginController]);
+        .controller('LoginController', ['$cookies', '$location', 'Firebase', 'Auth', '$mdDialog', 'ErrorCodes', 'ngMeta', LoginController]);
 
     /** @ngInject */
-    function LoginController($cookies, $location, Firebase, Auth, $mdDialog, ErrorCodes) {
+    function LoginController($cookies, $location, Firebase, Auth, $mdDialog, ErrorCodes, ngMeta) {
         var vm = this;
 
         var currentUser = $cookies.getObject('currentUser');
@@ -14,6 +14,12 @@
         if (currentUser) {
             $location.path('games');
         }
+
+        ngMeta.init();
+        ngMeta.setTitle('Login to find the Game of your life', ' | Omel Games');
+        ngMeta.setTag('author', 'Omel Games');
+        ngMeta.setTag('image', 'http://placeholder.com/abc.jpg');
+        ngMeta.setDefaultTag('author', 'Omel Games');
 
         // any time auth state changes, add the user data to scope
         Auth.$onAuthStateChanged(function(firebaseUser) {

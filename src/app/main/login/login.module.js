@@ -20,7 +20,13 @@
                     controller: 'LoginController as vm'
                 }
             },
-            bodyClass: 'login'
+            bodyClass: 'login',
+            data: {
+                meta: {
+                    'title': 'Login | Omel Games',
+                    'description': 'Login to Omel-Games to find the game that will bring happiness and took out the stress in your life.'
+                }
+            }
         });
 
         // Translation

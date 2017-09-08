@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.games', [])
+        .module('app.games.latest', [])
         .config(config);
 
     /** @ngInject */
@@ -13,13 +13,19 @@
                 url: '/games',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/games/games.html',
+                        templateUrl: 'app/main/games/games.latest.html',
                         controller: 'GamesController as vm'
                     }
                 },
                 resolve: {
                     NewGames: function(msApi) {
                         return msApi.resolve('games@get');
+                    }
+                },
+                data: {
+                    meta: {
+                        'title': 'New Games',
+                        'description': 'Find the Latest Games'
                     }
                 }
             });

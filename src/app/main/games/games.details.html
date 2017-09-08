@@ -1,0 +1,36 @@
+<span ng-bind="vm.game.title"></span>
+<div class="game-canvas">
+    <input type="hidden" id="uniqueID" value="{{ uniqueID }}" />
+    <input type="hidden" id="gameTitle" value="{{ vm.params.title | lowercase }}" />
+    <script type='text/javascript' id='{{uniqueID}}'>
+        (function(d) {
+            setTimeout(function() {
+                var gn = $("#gameTitle").val(),
+                    scriptId = $("#uniqueID").val();
+                var prop = {
+                    'agent': 'pub-13656-13936',
+                    'bgcolor': '#fff',
+                    'wrapperwidth': '728px',
+                    'wrapperheight': '500px',
+                    'gamewidth': '100%',
+                    'gameheight': '100%',
+                    'game_fullscreen_on_mobile': 'true',
+                    'locale': 'en'
+                };
+                jsid = 'sgEmbedJS';
+                if (d.getElementById(jsid)) {
+                    embed(d, scriptId, gn, prop);
+                } else {
+                    var s = d.createElement('script');
+                    s.id = jsid;
+                    s.type = 'text/javascript';
+                    s.onload = function() {
+                        embed(d, scriptId, gn, prop);
+                    };
+                    s.src = '//dop3jnx8my3ym.cloudfront.net/embedder.js';
+                    d.getElementsByTagName('head')[0].appendChild(s);
+                }
+            }, 1000);
+        }(document));
+    </script>
+</div>

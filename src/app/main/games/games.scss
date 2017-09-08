@@ -13,6 +13,13 @@
     }
 }
 
+.game-canvas {
+    .sgplayer {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
 @media all and (min-width: 768px) and (max-width: 1000px) {
     .masonry {
         padding: 0px;
