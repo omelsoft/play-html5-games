@@ -9,7 +9,7 @@
     function config($stateProvider, $translatePartialLoaderProvider) {
         // State
         $stateProvider.state('app.login', {
-            url: '/login',
+            url: '/login/',
             views: {
                 'main@': {
                     templateUrl: 'app/core/layouts/content-only.html',

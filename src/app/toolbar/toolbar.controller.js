@@ -144,9 +144,9 @@
          */
         function logout() {
             $rootScope.error = null;
-            Firebase.$signOut().then(function() {
+            Auth.$signOut().then(function() {
                 $cookies.remove('currentUser');
-                $location.path('/login');
+                $location.path('/login/');
             }).catch(function(error) {
                 $rootScope.error = error;
             });
