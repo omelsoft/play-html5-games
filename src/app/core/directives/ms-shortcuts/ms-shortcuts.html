@@ -6,7 +6,7 @@
                 <md-button back-button back-to="{{shortcut.state}}" params="shortcut.params" class="md-icon-button shortcut" aria-label="{{shortcut.title}}">
                     <md-icon ng-if="shortcut.icon" md-font-icon="{{shortcut.icon}}" class="icon s24"></md-icon>
                     <!-- <div ng-if="!shortcut.icon" class="first-letter">{{shortcut.title.charAt(0)}}</div> -->
-                    <img class="shortcut" ng-if="shortcut.thumb" ng-src="{{shortcut.thumb}}" />
+                    <img class="thumb" ng-if="shortcut.thumb" ng-src="{{shortcut.thumb}}" />
                     <md-tooltip md-direction="bottom">{{shortcut.title}}</md-tooltip>
                 </md-button>
             </div>
