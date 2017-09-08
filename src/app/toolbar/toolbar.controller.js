@@ -3,7 +3,7 @@
 
     angular
         .module('app.toolbar')
-        .controller('ToolbarController', ['$rootScope', '$q', '$location', '$state', '$cookies', 'Firebase', 'Auth', '$timeout', '$mdSidenav', '$translate', '$mdToast', 'msNavigationService', ToolbarController]);
+        .controller('ToolbarController', ['$rootScope', '$q', '$location', '$state', '$cookies', '$timeout', 'Firebase', 'Auth', '$mdSidenav', '$translate', '$mdToast', 'msNavigationService', ToolbarController]);
 
     /** @ngInject */
     function ToolbarController($rootScope, $q, $location, $state, $cookies, $timeout, Firebase, Auth, $mdSidenav, $translate, $mdToast, msNavigationService) {
@@ -75,6 +75,7 @@
         vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;
         vm.toggleMsNavigationFolded = toggleMsNavigationFolded;
         vm.search = search;
+        vm.searchGames = searchGames;
         vm.searchResultClick = searchResultClick;
 
         //////////
@@ -234,6 +235,31 @@
             // Fake service delay
             $timeout(function() {
                 deferred.resolve(navigation);
+            }, 1000);
+
+            return deferred.promise;
+        }
+
+        /**
+         * search in list of games
+         * 
+         */
+        function searchGames(query) {
+            var games = $rootScope.games,
+                deferred = $q.defer(),
+                result;
+
+            if (query) {
+                result = games.filter(function(item) {
+                    if (angular.lowercase(item.title).search(angular.lowercase(query)) > -1) {
+                        return true;
+                    }
+                });
+            }
+
+            // Fake service delay
+            $timeout(function() {
+                deferred.resolve(result);
             }, 1000);
 
             return deferred.promise;
