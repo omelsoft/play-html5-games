@@ -14,6 +14,7 @@
             'ui.router',
             'wu.masonry',
             'firebase',
-            'ngMeta'
+            'ngMeta',
+            'angularUtils.directives.dirPagination'
         ]);
 })();
