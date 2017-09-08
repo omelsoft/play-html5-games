@@ -1,12 +1,13 @@
 {
     "LOGIN": {
-        "TITLE": "Log in to your account",
+        "TITLE": "Log in and PLAY!",
         "DESCRIPTION": "",
         "EMAIL": "Email",
         "PASSWORD": "Password",
         "REMEMBER_ME": "Remember Me",
         "FORGOT_PASSWORD": "Forgot Password?",
         "LOG_IN": "LOG IN",
+        "LOGIN_MESSAGE": "Login or create your account to play more games by simply clicking any of the buttons below.",
         "OR": "LOGIN WITH",
         "WITH_GOOGLE": "Log in with Google",
         "WITH_FACEBOOK": "Log in with Facebook",
@@ -16,6 +17,9 @@
             "EMAIL_REQUIRED": "Email field is required",
             "EMAIL_MUST_VALID": "Email must be a valid e-mail address",
             "PASSWORD_REQUIRED": "Password field is required"
+        },
+        "FOOTER": {
+            "COPYRIGHT": "&copy; OMEL GAMES. ALL RIGHTS RESERVED."
         }
     }
 }

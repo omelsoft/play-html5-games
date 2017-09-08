@@ -184,9 +184,11 @@
             }
             .title {
                 font-size: 21px;
+                text-align: center;
             }
             .description {
                 padding-top: 8px;
+                text-align: center;
             }
             form {
                 width: 100%;
@@ -219,7 +221,7 @@
                 margin: 24px auto 16px auto;
                 position: relative;
                 overflow: hidden;
-                width: 100px;
+                width: auto;
                 text-align: center;
                 color: rgba(0, 0, 0, 0.54);
                 .text {
@@ -232,7 +234,7 @@
                     &:after {
                         content: '';
                         display: block;
-                        width: 30px;
+                        width: 50px;
                         position: absolute;
                         top: 10px;
                         border-top: 1px solid rgba(0, 0, 0, 0.12);
@@ -265,7 +267,7 @@
                 }
             }
             .register {
-                margin: 32px auto 24px auto;
+                margin: 50px auto 24px auto;
                 width: 250px;
                 font-weight: 500;
                 .text {
