@@ -20,6 +20,7 @@
                 margin: 32px auto;
                 color: #FFFFFF;
                 border-radius: 2px;
+                text-align: center;
             }
             .title {
                 font-size: 17px;
@@ -154,6 +155,15 @@
             border-radius: 2px;
             text-align: center;
         }
+        .teaser {
+            display: block;
+            position: absolute;
+            width: 600px;
+            padding: 10px 0;
+            text-align: left;
+            font-size: 29px;
+            margin-top: -60px;
+        }
         .title {
             font-size: 42px;
             font-weight: 300;
@@ -171,7 +181,7 @@
         height: 100%;
         background: #FFFFFF;
         #login-v2-form {
-            padding: 128px 48px 48px 48px;
+            padding: 50px 48px 48px 48px;
             .logo {
                 width: 128px;
                 height: 128px;
@@ -181,6 +191,7 @@
                 margin: 32px auto;
                 color: #FFFFFF;
                 border-radius: 2px;
+                text-align: center;
             }
             .title {
                 font-size: 21px;

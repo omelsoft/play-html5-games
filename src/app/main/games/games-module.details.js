@@ -6,7 +6,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, $translatePartialLoaderProvider) {
+    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider) {
         // State
         $stateProvider
             .state('app.games_detail', {
@@ -20,10 +20,9 @@
                         controller: 'GamesDetailsController as vm'
                     }
                 },
-                data: {
-                    meta: {
-                        'title': 'New Games',
-                        'description': 'Find the Latest Games'
+                resolve: {
+                    NewGames: function(msApi) {
+                        return msApi.resolve('games@get');
                     }
                 }
             })
@@ -34,11 +33,19 @@
                         templateUrl: 'app/main/games/games.details.html',
                         controller: 'GamePlayController as vm'
                     }
+                },
+                resolve: {
+                    NewGames: function(msApi) {
+                        return msApi.resolve('games@get');
+                    }
                 }
             });
 
         // Translation
         $translatePartialLoaderProvider.addPart('app/main/games');
+
+        // Api
+        msApiProvider.register('games', ['app/data/games/games.json']);
 
     }
 })();

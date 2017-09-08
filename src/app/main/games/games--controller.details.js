@@ -3,17 +3,20 @@
 
     angular
         .module('app.games.detail')
-        .controller('GamesDetailsController', ['$cookies', '$scope', '$rootScope', '$location', '$state', 'ngMeta', 'Game', GamesDetailsController]);
+        .controller('GamesDetailsController', ['$cookies', '$scope', '$rootScope', '$location', '$state', 'ngMeta', 'NewGames', 'Game', GamesDetailsController]);
 
     /** @ngInject */
-    function GamesDetailsController($cookies, $scope, $rootScope, $location, $state, ngMeta, Game) {
+    function GamesDetailsController($cookies, $scope, $rootScope, $location, $state, ngMeta, NewGames, Game) {
         var vm = this;
 
 
         // Data
+        vm.games = NewGames.games;
         vm.game = Game.get();
-        $scope.uniqueID = Game.uniqueID();
         vm.params = $state.params;
+
+        $rootScope.games = vm.games;
+        $scope.uniqueID = Game.uniqueID();
 
         ngMeta.init();
         ngMeta.setTitle(vm.game.title, ' | Omel Games');
@@ -35,7 +38,7 @@
         vm.viewGame = viewGame;
 
         function viewGame(game) {
-            console.log(game);
+            // console.log(game);
         }
     }
 })();

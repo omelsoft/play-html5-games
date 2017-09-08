@@ -9,7 +9,7 @@
     function runBlock($rootScope, $timeout, $state, $location, $cookies) {
         // Set public pages
         var publicPages = [
-            '/login/'
+            '/home/'
         ];
         var restrictedPage = publicPages.indexOf($location.path()) === -1;
 
@@ -32,7 +32,7 @@
         var currentUser = $cookies.getObject('currentUser');
 
         if (!currentUser && restrictedPage) {
-            $location.path('/login/');
+            $location.path('/home/');
         } else {
             $state.go('app.games');
         }

@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('app.login')
-        .controller('LoginController', ['$cookies', '$location', 'Firebase', 'Auth', '$mdDialog', 'ErrorCodes', 'ngMeta', LoginController]);
+        .module('app.home')
+        .controller('HomeController', ['$cookies', '$location', 'Firebase', 'Auth', '$mdDialog', 'ErrorCodes', 'ngMeta', HomeController]);
 
     /** @ngInject */
-    function LoginController($cookies, $location, Firebase, Auth, $mdDialog, ErrorCodes, ngMeta) {
+    function HomeController($cookies, $location, Firebase, Auth, $mdDialog, ErrorCodes, ngMeta) {
         var vm = this;
 
         var currentUser = $cookies.getObject('currentUser');

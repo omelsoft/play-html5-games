@@ -15,8 +15,8 @@
             // Quick Panel
             'app.quick-panel',
 
-            // Login
-            'app.login',
+            // Home
+            'app.home',
 
             // Games
             'app.games'

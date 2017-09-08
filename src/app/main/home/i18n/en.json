@@ -1,5 +1,6 @@
 {
     "LOGIN": {
+        "TEASER": "DON'T MISS THE FUN, LOG IN TO PLAY MORE!",
         "TITLE": "Log in and PLAY!",
         "DESCRIPTION": "",
         "EMAIL": "Email",
@@ -7,7 +8,7 @@
         "REMEMBER_ME": "Remember Me",
         "FORGOT_PASSWORD": "Forgot Password?",
         "LOG_IN": "LOG IN",
-        "LOGIN_MESSAGE": "Login or create your account to play more games by simply clicking any of the buttons below.",
+        "LOGIN_MESSAGE": "Logging-in or creating account is as simple as clicking any of the buttons below.",
         "OR": "LOGIN WITH",
         "WITH_GOOGLE": "Log in with Google",
         "WITH_FACEBOOK": "Log in with Facebook",
