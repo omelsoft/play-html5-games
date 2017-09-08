@@ -181,6 +181,7 @@
          * Add Game shortcuts 
          */
         function addGameShortcut(item) {
+            var hasShortcut = false;
             var game = item.link.split('/');
             var shortcut = {
                 'title': item.title,
@@ -190,7 +191,19 @@
                 'hasShortcut': true
             };
 
-            vm.gameShortcuts.push(shortcut);
+            // Check if the item already have a shortcut
+            for (var x = 0; x < vm.gameShortcuts.length; x++) {
+                // Set hasShortcut to true
+                if (vm.gameShortcuts[x].title === item.title) {
+                    hasShortcut = true;
+                }
+            }
+
+            // If this item don't have shortcut yet
+            // push it to array
+            if (!hasShortcut) {
+                vm.gameShortcuts.push(shortcut);
+            }
 
             // Save the shortcuts
             vm.saveGameShortcuts();
