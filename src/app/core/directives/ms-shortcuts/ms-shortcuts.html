@@ -40,8 +40,9 @@
                             <div layout="row" layout-align="start space-between">
                                 <div layout="row" layout-align="start center" flex>
                                     <div class="icon icon-container" layout="row" layout-align="center center">
-                                        <i ng-if="result.icon" class="{{result.icon}}"></i>
-                                        <div ng-if="!result.icon" class="square md-accent-bg"></div>
+                                        <!-- <i ng-if="result.icon" class="{{result.icon}}"></i> -->
+                                        <!-- <div ng-if="!result.icon" class="square md-accent-bg"></div> -->
+                                        <img class="thumb" ng-if="result.thumb" ng-src="{{result.thumb}}" />
                                     </div>
                                     <div>
                                         <div class="title">{{result.title}}</div>
