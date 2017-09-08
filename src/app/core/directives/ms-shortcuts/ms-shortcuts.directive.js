@@ -11,6 +11,8 @@
         var vm = this;
 
         // Data
+        vm.user = $cookies.getObject('currentUser');
+
         vm.query = '';
         vm.queryOptions = {
             debounce: 300
@@ -145,7 +147,7 @@
             // load the shortcuts from the cookies.
             // But here you can make an API call
             // to load them from the DB.
-            var shortcuts = angular.fromJson($cookies.get('OMEL-GAMES.gameShortcuts'));
+            var shortcuts = angular.fromJson($cookies.get(vm.user.uid + '.gameShortcuts'));
 
             if (angular.isUndefined(shortcuts)) {
                 shortcuts = [];
@@ -167,7 +169,7 @@
             // keep the shortcuts in the cookies.
             // But here you can make an API call
             // to save them to the DB.
-            $cookies.put('OMEL-GAMES.gameShortcuts', angular.toJson(vm.gameShortcuts));
+            $cookies.put(vm.user.uid + '.gameShortcuts', angular.toJson(vm.gameShortcuts));
 
             // Fake the service delay
             $timeout(function() {
@@ -328,7 +330,7 @@
             // load the shortcuts from the cookies.
             // But here you can make an API call
             // to load them from the DB.
-            var shortcuts = angular.fromJson($cookies.get('OMEL-GAMES.shortcuts'));
+            var shortcuts = angular.fromJson($cookies.get(vm.user.uid + '.shortcuts'));
 
             // No cookie available. Generate one
             // for the demo purposes...
@@ -345,7 +347,7 @@
                     'hasShortcut': true
                 }];
 
-                $cookies.put('OMEL-GAMES.shortcuts', angular.toJson(shortcuts));
+                $cookies.put(vm.user.uid + '.shortcuts', angular.toJson(shortcuts));
             }
 
             // Resolve the promise
@@ -364,7 +366,7 @@
             // keep the shortcuts in the cookies.
             // But here you can make an API call
             // to save them to the DB.
-            $cookies.put('OMEL-GAMES.shortcuts', angular.toJson(vm.shortcuts));
+            $cookies.put(vm.user.uid + '.shortcuts', angular.toJson(vm.shortcuts));
 
             // Fake the service delay
             $timeout(function() {
