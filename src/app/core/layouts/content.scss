@@ -8,3 +8,14 @@
     padding: 20px;
     border-top: 1px solid #e2e2e2;
 }
+
+@media all and (max-width: 480px) {
+    #content {
+        width: 100%;
+        padding: 0px;
+        .game-canvas {
+            padding: 0px!important;
+            overflow: hidden;
+        }
+    }
+}

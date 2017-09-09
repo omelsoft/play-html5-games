@@ -29,3 +29,18 @@
         margin-right: 10px;
     }
 }
+
+@media all and (max-width: 480px) {
+    #toolbar {
+        .logo {
+            .logo-text {
+                display: none;
+            }
+        }
+        #user-menu {
+            .username {
+                display: none;
+            }
+        }
+    }
+}
