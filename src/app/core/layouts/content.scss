@@ -10,15 +10,21 @@
 }
 
 @media all and (max-width: 767px) {
-    #content {
-        width: 100%;
-        padding: 0px;
-        .game-canvas {
-            padding: 0px!important;
-            overflow: hidden;
+    .games {
+        &.play {
+            #content {
+                width: 100%;
+                padding: 0px;
+                top: 0px!important;
+                left: 0px!important;
+                .game-canvas {
+                    padding: 0px!important;
+                    overflow: hidden;
+                }
+            }
+            .footer {
+                display: none;
+            }
         }
-    }
-    .footer {
-        display: none;
     }
 }

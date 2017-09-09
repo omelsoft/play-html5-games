@@ -37,13 +37,15 @@
     }
 }
 
-@media all and (max-width: 480px) {
-    .game {
-        #toolbar {
-            display: none;
-        }
-        #content {
-            top: 0px!important;
+@media all and (max-width: 568px) {
+    .games {
+        .play {
+            #toolbar {
+                display: none;
+            }
+            #content {
+                top: 0px!important;
+            }
         }
     }
     #toolbar {

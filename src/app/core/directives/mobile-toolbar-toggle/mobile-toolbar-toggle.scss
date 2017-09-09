@@ -2,59 +2,61 @@ mobile-toolbar-toggle {
     display: none;
 }
 
-.game {
-    #toolbar {
-        transition: all linear 0.5s;
-        width: 100%;
-        position: fixed;
-        top: -80px;
-        left: 0;
-        display: block!important;
-        &.show-toolbar {
-            transition: all linear 0.5s;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            display: block!important;
-        }
-        &.hide-toolbar {
+.games {
+    &.play {
+        #toolbar {
             transition: all linear 0.5s;
             width: 100%;
             position: fixed;
             top: -80px;
             left: 0;
             display: block!important;
-        }
-    }
-    mobile-toolbar-toggle {
-        display: block!important;
-        z-index: 54 !important;
-        button {
-            padding: 0px!important;
-            margin: 0px!important;
-        }
-        &.ms-toolbar-toggle {
-            position: fixed;
-            background: #444444;
-            top: 34px;
-            width: 35px;
-            height: 35px;
-            &.move-down {
-                transition: all linear 0.2s;
-                top: 65px!important;
+            &.show-toolbar {
+                transition: all linear 0.5s;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: block!important;
             }
-            &.move-up {
-                transition: all linear 0.2s;
-                top: 34px!important;
+            &.hide-toolbar {
+                transition: all linear 0.5s;
+                width: 100%;
+                position: fixed;
+                top: -80px;
+                left: 0;
+                display: block!important;
             }
         }
-        md-icon {
-            font-size: 47px;
-            color: #797979!important;
-            position: relative;
-            margin-left: -12px;
-            margin-top: -26px;
+        mobile-toolbar-toggle {
+            display: block!important;
+            z-index: 54 !important;
+            button {
+                padding: 0px!important;
+                margin: 0px!important;
+            }
+            &.ms-toolbar-toggle {
+                position: fixed;
+                background: #444444;
+                top: 34px;
+                width: 35px;
+                height: 35px;
+                &.move-down {
+                    transition: all linear 0.2s;
+                    top: 65px!important;
+                }
+                &.move-up {
+                    transition: all linear 0.2s;
+                    top: 34px!important;
+                }
+            }
+            md-icon {
+                font-size: 47px;
+                color: #797979!important;
+                position: relative;
+                margin-left: -12px;
+                margin-top: -26px;
+            }
         }
     }
 }

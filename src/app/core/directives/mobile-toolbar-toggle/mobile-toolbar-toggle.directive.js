@@ -20,12 +20,12 @@
                 angular.element(tElement).bind('click', function(e) {
                     if (window.mobileTooglbarToggled) {
                         var selector = attrs.selector;
-                        angular.element('.game #' + selector).removeClass('show-toolbar').addClass('hide-toolbar');
+                        angular.element('.games.play #' + selector).removeClass('show-toolbar').addClass('hide-toolbar');
                         angular.element(this).removeClass('move-down').addClass('move-up');
                         window.mobileTooglbarToggled = false;
                     } else {
                         var selector = attrs.selector;
-                        angular.element('.game #' + selector).removeClass('hide-toolbar').addClass('show-toolbar');
+                        angular.element('.games.play #' + selector).removeClass('hide-toolbar').addClass('show-toolbar');
                         window.setTimeout(function() {
                             angular.element(tElement).removeClass('move-up').addClass('move-down');
                         }, 300);

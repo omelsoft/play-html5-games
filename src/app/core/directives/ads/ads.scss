@@ -4,3 +4,9 @@
     display: block;
     margin: 0 auto;
 }
+
+@media all and (max-width: 767px) {
+    .leaderboard-top {
+        display: none!important;
+    }
+}
