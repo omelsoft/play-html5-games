@@ -1,4 +1,11 @@
 #layout-content-with-toolbar {
+    #toolbar-progress-linear {
+        position: fixed;
+        left: 0px;
+        height: 2px;
+        overflow: hidden;
+        top: 64px;
+    }
     #toolbar {
         padding: 0 0 0 16px;
         .logo {
