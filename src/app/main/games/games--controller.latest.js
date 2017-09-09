@@ -50,7 +50,8 @@
         function viewGame(item) {
             var game = item.link.split('/');
             Game.set(item);
-            $rootScope.splashing = true;
+            // $rootScope.splashing = true;
+            $rootScope.loadingProgress = true;
             $state.transitionTo('app.games_detail', { title: game[3] }, { reload: true, inherit: true, notify: true });
             // $state.go('app.games_detail', {
             //     title: game[3]

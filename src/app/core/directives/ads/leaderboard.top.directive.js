@@ -21,7 +21,9 @@
                     s.src = '//cdn.chitika.net/getads.js';
 
                     angular.element(elem).append(u);
-                    angular.element(elem).append(s);
+                    $timeout(function() {
+                        angular.element(elem).append(s);
+                    }, 100);
                 });
             }
         };

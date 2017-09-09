@@ -47,7 +47,7 @@
 <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm" class="{{state.current.bodyClass || ''}}">
 
     <!-- SPLASH SCREEN -->
-    <ms-splash-screen ng-show="$root.splashing" id="splash-screen">
+    <ms-splash-screen id="splash-screen">
         <div class="center">
             <div class="logo">
                 <span>G</span>
@@ -94,7 +94,7 @@
     <!-- MOBILE TOOLBAR TOGGLE -->
     <mobile-toolbar-toggle selector="toolbar"></mobile-toolbar-toggle>
     <!-- /MOBILE TOOLBAR TOGGLE -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         (function() {
             if (window.CHITIKA === undefined) {
                 window.CHITIKA = {
@@ -111,7 +111,7 @@
             window.CHITIKA.units.push(unit);
             // document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
         }());
-    </script>
+    </script> -->
     <!-- <script id="chitikaJSFooter" type="text/javascript" src="//cdn.chitika.net/getads.js" async></script> -->
 </body>
 
