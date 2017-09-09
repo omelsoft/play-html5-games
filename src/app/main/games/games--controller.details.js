@@ -24,6 +24,7 @@
         ngMeta.setTitle('Play ' + vm.game.title, ' | Omel Games');
         ngMeta.setTag('author', 'Omel Games');
         ngMeta.setTag('image', vm.game.teaserBig);
+        ngMeta.setTag('url', $location.$$absUrl);
         ngMeta.setTag('description', vm.game.description);
         ngMeta.setDefaultTag('author', 'Omel Games');
 

@@ -13,7 +13,9 @@
         ngMeta.init();
         ngMeta.setTitle('Find the Game of your life', ' | Page ' + vm.params.page);
         ngMeta.setTag('author', 'Omel Games');
-        ngMeta.setTag('image', 'http://placeholder.com/abc.jpg');
+        ngMeta.setTag('image', vm.games[0].teaserBig);
+        ngMeta.setTag('url', $location.$$absUrl);
+        ngMeta.setTag('description', vm.games[0].description);
         ngMeta.setDefaultTag('author', 'Omel Games');
 
         // Data

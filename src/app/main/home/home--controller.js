@@ -23,6 +23,7 @@
         ngMeta.setTitle('Login to find the Game of your life', ' | Omel Games');
         ngMeta.setTag('author', 'Omel Games');
         ngMeta.setTag('image', vm.game.teaserBig);
+        ngMeta.setTag('url', $location.$$absUrl);
         ngMeta.setDefaultTag('author', 'Omel Games');
 
         // any time auth state changes, add the user data to scope
