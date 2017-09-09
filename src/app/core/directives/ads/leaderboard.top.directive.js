@@ -3,15 +3,26 @@
 
     angular
         .module('app.core')
-        .directive('leaderboardAdTop', ['$timeout', leaderboardAdTopDirective]);
+        .directive('leaderboardAdTop', ['$timeout', '$window', leaderboardAdTopDirective]);
 
     /** @ngInject */
-    function leaderboardAdTopDirective($timeout) {
+    function leaderboardAdTopDirective($timeout, $window) {
         return {
             restrict: 'A',
             scope: {},
             link: function(scope, elem, attr) {
-                angular.element(elem).append('<div id="chitikaAdBlock-0"></div>');
+                $timeout(function() {
+                    var d = document,
+                        jsid = 'chitikaJSLBAd';
+                    var u = '<div id="chitikaAdBlock-0"></div>';
+                    var s = d.createElement('script');
+                    s.id = jsid;
+                    s.type = 'text/javascript';
+                    s.src = '//cdn.chitika.net/getads.js';
+
+                    angular.element(elem).append(u);
+                    angular.element(elem).append(s);
+                });
             }
         };
 

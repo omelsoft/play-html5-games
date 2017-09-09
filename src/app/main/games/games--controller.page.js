@@ -47,7 +47,7 @@
          */
         function viewGame(item) {
             var game = item.link.split('/');
-            Game.set(game);
+            Game.set(item);
             $state.go('app.games_detail', {
                 title: game[3]
             });

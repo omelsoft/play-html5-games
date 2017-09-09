@@ -46,7 +46,7 @@
 <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm" class="{{state.current.bodyClass || ''}}">
 
     <!-- SPLASH SCREEN -->
-    <ms-splash-screen id="splash-screen">
+    <ms-splash-screen ng-show="$root.splashing" id="splash-screen">
         <div class="center">
             <div class="logo">
                 <span>G</span>
@@ -70,7 +70,7 @@
     </ms-splash-screen>
     <!-- / SPLASH SCREEN -->
 
-    <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
+    <div id="main" class="" ui-view="main" layout="column"></div>
 
     <!-- <ms-theme-options></ms-theme-options> -->
 
@@ -101,18 +101,17 @@
                 };
             };
             var unit = {
-                "calltype": "async[2]",
-                "publisher": "omelsoft",
-                "width": 728,
-                "height": 90,
-                "sid": "Chitika Default"
+                'calltype': 'async[2]',
+                'publisher': 'omelsoft',
+                'width': 728,
+                'height': 90,
+                'sid': 'Chitika Default'
             };
-            var placement_id = window.CHITIKA.units.length;
             window.CHITIKA.units.push(unit);
             // document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
         }());
     </script>
-    <script type="text/javascript" src="//cdn.chitika.net/getads.js"></script>
+    <!-- <script id="chitikaJSFooter" type="text/javascript" src="//cdn.chitika.net/getads.js" async></script> -->
 </body>
 
 </html>
