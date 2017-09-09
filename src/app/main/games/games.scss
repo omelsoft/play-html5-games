@@ -83,4 +83,21 @@ md-card {
             width: 100%;
         }
     }
+    md-card {
+        md-card-title {
+            padding: 10px 16px 0px;
+        }
+    }
+    .game-pagination {
+        .pagination {
+            padding: 0px;
+            li {
+                margin-right: -1px;
+                a {
+                    padding: 5px 0px!important;
+                    min-width: 30px;
+                }
+            }
+        }
+    }
 }

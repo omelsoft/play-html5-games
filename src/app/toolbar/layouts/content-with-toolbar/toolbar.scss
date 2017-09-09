@@ -38,6 +38,14 @@
 }
 
 @media all and (max-width: 480px) {
+    .game {
+        #toolbar {
+            display: none;
+        }
+        #content {
+            top: 0px!important;
+        }
+    }
     #toolbar {
         .logo {
             .logo-text {

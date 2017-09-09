@@ -25,6 +25,8 @@
         ngMeta.setTag('description', vm.game.description);
         ngMeta.setDefaultTag('author', 'Omel Games');
 
+        addBodyClass();
+
         // Data
         vm.isLoggedIn = false;
 
@@ -35,11 +37,11 @@
             vm.isLoggedIn = true;
         }
 
-        // Methods
-        vm.viewGame = viewGame;
-
-        function viewGame(game) {
-            // console.log(game);
+        /**
+         * Add .game class to body 
+         */
+        function addBodyClass() {
+            $('body').addClass('game');
         }
     }
 })();

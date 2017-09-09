@@ -15,6 +15,8 @@
         ngMeta.setTag('image', 'http://placeholder.com/abc.jpg');
         ngMeta.setDefaultTag('author', 'Omel Games');
 
+        removeBodyClass();
+
         // Data
         vm.isLoggedIn = false;
         vm.games = NewGames.games;
@@ -64,6 +66,13 @@
             $state.go('app.games_page', {
                 page: newPageNumber
             });
+        }
+
+        /**
+         * Removes the game class on home page
+         */
+        function removeBodyClass() {
+            $('body').removeClass('game');
         }
     }
 })();
