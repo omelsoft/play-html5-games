@@ -76,7 +76,26 @@ md-card {
     }
 }
 
-@media all and (max-width: 480px) {
+@media all and (min-width: 567px) and (max-width: 767px) {
+    .masonry {
+        padding: 0px;
+        .masonry-brick {
+            width: 50%;
+        }
+    }
+    .games {
+        &.play {
+            #toolbar {
+                display: none!important;
+            }
+            #content {
+                top: 0px!important;
+            }
+        }
+    }
+}
+
+@media all and (max-width: 566px) {
     .masonry {
         padding: 0px;
         .masonry-brick {

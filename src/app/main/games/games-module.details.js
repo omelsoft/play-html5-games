@@ -20,6 +20,7 @@
                         controller: 'GamesDetailsController as vm'
                     }
                 },
+                bodyClass: 'games play',
                 resolve: {
                     NewGames: function(msApi) {
                         return msApi.resolve('games@get');
@@ -34,6 +35,7 @@
                         controller: 'GamePlayController as vm'
                     }
                 },
+                bodyClass: 'games play',
                 resolve: {
                     NewGames: function(msApi) {
                         return msApi.resolve('games@get');

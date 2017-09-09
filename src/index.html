@@ -20,6 +20,9 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="assets/angular-material-assets/css/material_icons_unicode.css" rel="stylesheet">
+
+    <!-- <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script> -->
+
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
     <!-- bower:css -->
     <!-- run `gulp inject` to automatically populate bower styles dependencies -->
@@ -90,6 +93,26 @@
     <!-- MOBILE TOOLBAR TOGGLE -->
     <mobile-toolbar-toggle selector="toolbar"></mobile-toolbar-toggle>
     <!-- /MOBILE TOOLBAR TOGGLE -->
+    <script type="text/javascript">
+        (function() {
+            if (window.CHITIKA === undefined) {
+                window.CHITIKA = {
+                    'units': []
+                };
+            };
+            var unit = {
+                "calltype": "async[2]",
+                "publisher": "omelsoft",
+                "width": 728,
+                "height": 90,
+                "sid": "Chitika Default"
+            };
+            var placement_id = window.CHITIKA.units.length;
+            window.CHITIKA.units.push(unit);
+            // document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+        }());
+    </script>
+    <script type="text/javascript" src="//cdn.chitika.net/getads.js"></script>
 </body>
 
 </html>
