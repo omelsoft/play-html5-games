@@ -15,7 +15,8 @@
     <meta name="author" content="{{ngMeta.author}}" />
     <meta name="description" content="{{ngMeta.description}}" />
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link ng-if="!$root.icon" rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link ng-if="$root.icon" rel="icon" ng-href="{{ $root.icon }}" type="image/jpg" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="assets/angular-material-assets/css/material_icons_unicode.css" rel="stylesheet">

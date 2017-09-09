@@ -37,7 +37,8 @@
     <div id="login-v2-form-wrapper" class="flex-scrollable md-whiteframe-8dp" ms-scroll>
         <div id="login-v2-form">
             <div class="logo md-accent-bg">
-                <span>G</span>
+                <span ng-show="!vm.game.thumbBig">G</span>
+                <img ng-show="vm.game.thumbBig" class="home-game-thumb" ng-src="{{vm.game.thumbBig}}" />
             </div>
 
             <div class="title" translate="LOGIN.TITLE">Log in to your account</div>

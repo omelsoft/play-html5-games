@@ -18,6 +18,7 @@
                         controller: 'GamesController as vm'
                     }
                 },
+                bodyClass: 'games latest',
                 resolve: {
                     NewGames: function(msApi) {
                         return msApi.resolve('games@get');
@@ -32,6 +33,7 @@
                         controller: 'GamesPageController as vm'
                     }
                 },
+                bodyClass: 'games paged',
                 resolve: {
                     NewGames: function(msApi) {
                         return msApi.resolve('games@get');

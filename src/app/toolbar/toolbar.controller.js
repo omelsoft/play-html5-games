@@ -3,10 +3,10 @@
 
     angular
         .module('app.toolbar')
-        .controller('ToolbarController', ['$rootScope', '$q', '$location', '$state', '$cookies', '$timeout', 'Firebase', 'Auth', '$mdSidenav', '$translate', '$mdToast', 'msNavigationService', 'Game', ToolbarController]);
+        .controller('ToolbarController', ['$window', '$rootScope', '$q', '$location', '$state', '$cookies', '$timeout', 'Firebase', 'Auth', '$mdSidenav', '$translate', '$mdToast', 'msNavigationService', 'Game', ToolbarController]);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $location, $state, $cookies, $timeout, Firebase, Auth, $mdSidenav, $translate, $mdToast, msNavigationService, Game) {
+    function ToolbarController($window, $rootScope, $q, $location, $state, $cookies, $timeout, Firebase, Auth, $mdSidenav, $translate, $mdToast, msNavigationService, Game) {
         var vm = this;
 
         // Data
@@ -146,7 +146,8 @@
             $rootScope.error = null;
             Auth.$signOut().then(function() {
                 $cookies.remove('currentUser');
-                $location.path('/login/');
+                $location.path('/home/');
+                $window.location.reload();
             }).catch(function(error) {
                 $rootScope.error = error;
             });

@@ -3,17 +3,20 @@
 
     angular
         .module('app.home')
-        .controller('HomeController', ['$cookies', '$location', 'Firebase', 'Auth', '$mdDialog', 'ErrorCodes', 'ngMeta', HomeController]);
+        .controller('HomeController', ['$cookies', '$rootScope', '$location', 'Firebase', 'Auth', '$mdDialog', 'ErrorCodes', 'ngMeta', 'HomeGame', HomeController]);
 
     /** @ngInject */
-    function HomeController($cookies, $location, Firebase, Auth, $mdDialog, ErrorCodes, ngMeta) {
+    function HomeController($cookies, $rootScope, $location, Firebase, Auth, $mdDialog, ErrorCodes, ngMeta, HomeGame) {
         var vm = this;
 
         var currentUser = $cookies.getObject('currentUser');
-
         if (currentUser) {
-            $location.path('games');
+            $location.path('/latest/');
         }
+
+        // Data
+        vm.game = HomeGame;
+        $rootScope.icon = vm.game.thumb;
 
         ngMeta.init();
         ngMeta.setTitle('Login to find the Game of your life', ' | Omel Games');
