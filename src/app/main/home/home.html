@@ -1,5 +1,8 @@
 <div id="login-v2" layout="row" layout-align="start">
-    <div id="login-v2-intro" flex hide show-gt-sm>
+    <div id="login-v2-intro" class="game-wrapper animate-slide-left" flex hide show-gt-sm>
+        <div class="close-button">
+            <md-icon close-game game-wrapper=".game-wrapper" button=".mobile-intro-game-play" class="material-icons close"></md-icon>
+        </div>
         <span class="teaser" translate="LOGIN.TEASER">DON't MISS THE FUN, LOG IN TO PLAY MORE!</span>
         <div class="game-login-canvas">
             <script type='text/javascript' id=293182312>
@@ -37,8 +40,13 @@
     <div id="login-v2-form-wrapper" class="flex-scrollable md-whiteframe-8dp" ms-scroll>
         <div id="login-v2-form">
             <div class="logo md-accent-bg">
-                <span ng-show="!vm.game.thumbBig">G</span>
-                <img ng-show="vm.game.thumbBig" class="home-game-thumb" ng-src="{{vm.game.thumbBig}}" />
+                <span>G</span>
+                <div class="mobile-intro-game-play">
+                    <img ng-show="vm.game.thumbBig" class="mobile-intro-game-thumb" ng-src="{{vm.game.thumbBig}}" />
+                    <div class="play-button">
+                        <md-icon play-game game-wrapper=".game-wrapper" button=".mobile-intro-game-play" class="material-icon play_circle_filled"></md-icon>
+                    </div>
+                </div>
             </div>
 
             <div class="title" translate="LOGIN.TITLE">Log in to your account</div>

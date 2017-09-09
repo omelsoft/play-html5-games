@@ -1,3 +1,86 @@
+@-webkit-keyframes play-blink {
+    0% {
+        transform: scale(1.0);
+    }
+    25% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(1.20);
+    }
+    75% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+@-moz-keyframes play-blink {
+    0% {
+        transform: scale(1.0);
+    }
+    25% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(1.20);
+    }
+    75% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+@-o-keyframes play-blink {
+    0% {
+        transform: scale(1.0);
+    }
+    25% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(1.20);
+    }
+    75% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+@keyframes play-blink {
+    0% {
+        transform: scale(1.0);
+    }
+    25% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(1.20);
+    }
+    75% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+.mobile-intro-game-play md-icon {
+    -webkit-animation: play-blink 1s infinite;
+    /* Safari 4+ */
+    -moz-animation: play-blink 1s infinite;
+    /* Fx 5+ */
+    -o-animation: play-blink 1s infinite;
+    /* Opera 12+ */
+    animation: play-blink 1s infinite;
+    /* IE 10+, Fx 29+ */
+}
+
 #login {
     height: 100%;
     background: url('/assets/images/backgrounds/march.jpg') no-repeat;
@@ -144,6 +227,11 @@
     background-size: cover;
     #login-v2-intro {
         padding: 128px;
+        &.game-wrapper {
+            .close-button {
+                display: none;
+            }
+        }
         .logo {
             width: 128px;
             height: 128px;
@@ -192,10 +280,28 @@
                 color: #FFFFFF;
                 border-radius: 2px;
                 text-align: center;
-                .home-game-thumb {
-                    margin-top: 4px;
+                .mobile-intro-game-thumb {
+                    margin: 4px;
                     width: 120px;
                     height: 120px;
+                    display: none;
+                }
+                .mobile-intro-game-play {
+                    position: relative;
+                    top: -128px;
+                    z-index: 9999999999999;
+                    display: none;
+                    .play-button {
+                        position: relative;
+                        margin-top: -128px;
+                        md-icon {
+                            font-size: 50px;
+                            color: rgb(186, 227, 248);
+                            width: 50px;
+                            height: 50px;
+                            margin-top: -10px;
+                        }
+                    }
                 }
             }
             .title {
@@ -297,6 +403,34 @@
 
 // RESPONSIVE
 @media screen and (max-width: $layout-breakpoint-sm) {
+    #login-v2-intro {
+        &.game-wrapper {
+            background: #000000!important;
+            display: none;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 99999;
+            padding: 0px!important;
+            width: 100%;
+            height: 100%;
+            .close-button {
+                position: fixed;
+                top: 34px;
+                width: 35px;
+                height: 35px;
+                background: #ffffff;
+                text-align: center;
+                display: block!important;
+                md-icon {
+                    margin-top: 6px;
+                }
+            }
+            &.show {
+                display: block!important;
+            }
+        }
+    }
     #login-v2 {
         #login-v2-form-wrapper {
             width: 100%;
@@ -313,5 +447,14 @@
                 }
             }
         }
+    }
+    .mobile-intro-game-play {
+        &.hide {
+            display: none!important;
+        }
+    }
+    .mobile-intro-game-thumb,
+    .mobile-intro-game-play {
+        display: block!important;
     }
 }
