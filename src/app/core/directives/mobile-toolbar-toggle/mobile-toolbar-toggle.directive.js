@@ -12,7 +12,7 @@
             scope: {
                 selector: '@'
             },
-            template: '<md-button class="md-icon-button md-primary" aria-label="Toggle"><md-icon class="material-icons list"></md-icon></md-button>',
+            template: '<md-button class="md-icon-button md-no-ink" aria-label="Toggle"><md-icon class="material-icons list"></md-icon></md-button>',
             compile: function(tElement, attrs) {
                 window.mobileTooglbarToggled = false;
                 // Add class
