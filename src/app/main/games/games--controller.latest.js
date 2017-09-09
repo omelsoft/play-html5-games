@@ -17,6 +17,7 @@
 
         $rootScope.games = vm.games;
         $rootScope.currentPage = $rootScope.currentPage ? $rootScope.currentPage : 1;
+        $rootScope.bot = false;
 
         ngMeta.init();
         ngMeta.setTitle('Find the Game of your life', ' | Omel Games');

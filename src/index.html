@@ -4,17 +4,26 @@
 <head>
     <base href="/">
     <meta charset="utf-8">
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title ng-bind="ngMeta.title"></title>
+
+    <title ng-bind="ngMeta.title">DON'T MISS THE FUN, LOG IN TO PLAY MORE! | OMEL GAMES</title>
 
     <!-- Arbitrary tags -->
     <meta name="maValidation" content="88902eb39759b150067976ad261a5b9e" />
-    <meta property="og:type" content="{{ngMeta['og:type']}}" />
-    <meta property="og:locale" content="{{ngMeta['og:locale']}}" />
-    <meta property="og:image" content="{{ngMeta.image}}" />
-    <meta name="author" content="{{ngMeta.author}}" />
-    <meta name="description" content="{{ngMeta.description}}" />
+
+    <meta ng-if="$root.bot" property="og:type" content="website" />
+    <meta ng-if="$root.bot" property="og:locale" content="en" />
+    <meta ng-if="$root.bot" property="og:image" content="https://d1bjj4kazoovdg.cloudfront.net/assets/games/free-the-ball/teaser@2x.jpg?p=pub-13656-13936" />
+    <meta ng-if="$root.bot" name="author" content="OMEL GAMES" />
+    <meta ng-if="$root.bot" name="description" content="Just Click and Play the most in-demand HTML5 games whether you are on Desktop, Tablet, or Mobile. No application to be installed needed." />
+
+    <meta ng-if="!$root.bot" property="og:type" content="{{ngMeta['og:type']}}" />
+    <meta ng-if="!$root.bot" property="og:locale" content="{{ngMeta['og:locale']}}" />
+    <meta ng-if="!$root.bot" property="og:image" content="{{ngMeta.image}}" />
+    <meta ng-if="!$root.bot" name="author" content="{{ngMeta.author}}" />
+    <meta ng-if="!$root.bot" name="description" content="{{ngMeta.description}}" />
+
+
 
     <link ng-if="!$root.icon" rel="icon" href="favicon.ico" type="image/x-icon" />
     <link ng-if="$root.icon" rel="icon" ng-href="{{ $root.icon }}" type="image/jpg" />

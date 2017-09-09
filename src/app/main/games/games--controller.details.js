@@ -18,6 +18,7 @@
         $rootScope.splashing = true;
         $rootScope.games = vm.games;
         $scope.uniqueID = Game.uniqueID();
+        $rootScope.bot = false;
 
         ngMeta.init();
         ngMeta.setTitle('Play ' + vm.game.title, ' | Omel Games');

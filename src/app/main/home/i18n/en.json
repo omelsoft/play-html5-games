@@ -22,5 +22,13 @@
         "FOOTER": {
             "COPYRIGHT": "&copy; OMEL GAMES. ALL RIGHTS RESERVED."
         }
+    },
+    "META": {
+        "TITLE": "DON'T MISS THE FUN, LOG IN TO PLAY MORE! | OMEL GAMES",
+        "DESCRIPTION": "Just Click and Play the most in-demand HTML5 games whether you are on Desktop, Tablet, or Mobile. No application to be installed needed.",
+        "TYPE": "website",
+        "LOCALE": "en",
+        "IMAGE": "https://d1bjj4kazoovdg.cloudfront.net/assets/games/free-the-ball/teaser@2x.jpg?p=pub-13656-13936",
+        "AUTHOR": "OMEL GAMES"
     }
 }

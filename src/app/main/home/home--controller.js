@@ -17,11 +17,12 @@
         // Data
         vm.game = HomeGame;
         $rootScope.icon = vm.game.thumb;
+        $rootScope.bot = false;
 
         ngMeta.init();
         ngMeta.setTitle('Login to find the Game of your life', ' | Omel Games');
         ngMeta.setTag('author', 'Omel Games');
-        ngMeta.setTag('image', 'http://placeholder.com/abc.jpg');
+        ngMeta.setTag('image', vm.game.teaserBig);
         ngMeta.setDefaultTag('author', 'Omel Games');
 
         // any time auth state changes, add the user data to scope
